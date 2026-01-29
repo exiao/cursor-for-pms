@@ -156,27 +156,40 @@ Each HTML file contains its own `<style>` block and Tailwind config. Edit inline
 
 ## Deployment (Render.com)
 
-The site is deployed as a static site on Render.com with environment variable injection.
+The site is deployed as **two separate static sites** on Render.com, each with different environment variables for domain-specific OG images.
+
+### Render Services
+
+| Site | Service ID | Domain | Dashboard |
+|------|------------|--------|-----------|
+| **Cursor** | `srv-d5tsm7vpm1nc73epsbcg` | cursorpm.com | [Settings](https://dashboard.render.com/static/srv-d5tsm7vpm1nc73epsbcg/settings) |
+| **Claude Code** | `srv-d5tu7m14tr6s739jqr0g` | claudecodepm.com | [Settings](https://dashboard.render.com/static/srv-d5tu7m14tr6s739jqr0g/settings) |
 
 ### Build Configuration
 - **Build Command:** `./build.sh`
 - **Publish Directory:** `.`
+- **Branch:** `main`
 
 ### Environment Variables
 
-| Variable | Description | Example |
-|----------|-------------|---------|
-| `SITE_URL` | Full URL of the deployed site | `https://cursorforpms.com` |
-| `OG_IMAGE` | OG image filename to use | `og-cursor.png` or `og-claude.png` |
+| Site | SITE_URL | OG_IMAGE |
+|------|----------|----------|
+| Cursor | `https://cursorpm.com` | `og-cursor.png` |
+| Claude Code | `https://claudecodepm.com` | `og-claude.png` |
 
 ### How It Works
 1. `build.sh` runs at deploy time
 2. Replaces `__SITE_URL__` and `__OG_IMAGE__` placeholders in `index.html`
 3. Social crawlers see the correct absolute URLs for OG images
+4. Each domain serves its own branded OG image
 
 ### Testing Locally
 ```bash
-SITE_URL=https://cursorforpms.com OG_IMAGE=og-cursor.png ./build.sh
+# Test Cursor build
+SITE_URL=https://cursorpm.com OG_IMAGE=og-cursor.png ./build.sh
+
+# Test Claude Code build
+SITE_URL=https://claudecodepm.com OG_IMAGE=og-claude.png ./build.sh
 ```
 
 ---
