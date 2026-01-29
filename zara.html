@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CURSOR FOR PMS | AI Course</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'zara-white': '#FFFFFF',
+                        'zara-light': '#FAFAFA',
+                        'zara-border': '#E0E0E0',
+                        'zara-black': '#000000',
+                        'zara-accent': '#00A878',
+                        'zara-muted': '#757575',
+                        'zara-light-muted': '#9E9E9E',
+                    },
+                    fontFamily: {
+                        sans: ['Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
+                        serif: ['Instrument Serif', 'Georgia', 'serif'],
+                    },
+                    letterSpacing: {
+                        'ultra-wide': '0.25em',
+                        'mega-wide': '0.35em',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #FFFFFF;
+            font-weight: 300;
+            letter-spacing: 0.02em;
+        }
+
+        /* Zara-style ultra-light typography */
+        .zara-nav {
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .zara-heading {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-style: italic;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+        }
+
+        .zara-subhead {
+            font-size: 10px;
+            font-weight: 400;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+        }
+
+        /* Subtle fade-in animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        .animate-delay-1 { animation-delay: 0.15s; opacity: 0; }
+        .animate-delay-2 { animation-delay: 0.3s; opacity: 0; }
+        .animate-delay-3 { animation-delay: 0.45s; opacity: 0; }
+        .animate-delay-4 { animation-delay: 0.6s; opacity: 0; }
+
+        /* Zara-style vertical line */
+        .scroll-line {
+            width: 1px;
+            height: 60px;
+            background: #000;
+        }
+
+        /* Image grayscale hover effect */
+        .company-logo {
+            filter: grayscale(100%);
+            opacity: 0.5;
+            transition: all 0.4s ease;
+        }
+        .company-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        /* Zara-style underline for search/inputs */
+        .zara-underline {
+            border-bottom: 1px solid #000;
+            padding-bottom: 4px;
+        }
+
+        /* No shadows, no borders on cards - flat design */
+        .zara-card {
+            background: transparent;
+            transition: opacity 0.3s ease;
+        }
+        .zara-card:hover {
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body class="bg-white text-zara-black antialiased">
+
+    <!-- Header - Zara style -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white">
+        <div class="px-8 py-6 flex items-center justify-between">
+            <!-- Left: Menu + Logo -->
+            <div class="flex items-center gap-8">
+                <button class="w-6 flex flex-col gap-1.5" aria-label="Menu">
+                    <span class="w-full h-px bg-black"></span>
+                    <span class="w-full h-px bg-black"></span>
+                    <span class="w-full h-px bg-black"></span>
+                </button>
+                <a href="#" class="text-2xl font-bold tracking-tight" style="font-family: 'Times New Roman', serif; letter-spacing: -0.05em;">
+                    CURSOR<span class="text-zara-accent">PM</span>
+                </a>
+            </div>
+            <!-- Right: Navigation -->
+            <div class="flex items-center gap-8">
+                <a href="#learn" class="zara-nav hidden md:block zara-underline pb-1">CURRICULUM</a>
+                <a href="https://maven.com/aman-khan/coding-agents-for-product-managers"
+                   target="_blank"
+                   class="zara-nav hover:opacity-60 transition-opacity">LOG IN</a>
+                <a href="#instructors" class="zara-nav hover:opacity-60 transition-opacity hidden md:block">HELP</a>
+                <a href="https://maven.com/aman-khan/coding-agents-for-product-managers"
+                   target="_blank"
+                   class="zara-nav hover:opacity-60 transition-opacity">ENROLL [0]</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section - Zara editorial style -->
+    <section class="pt-32 pb-16 px-8 min-h-screen flex flex-col justify-center">
+        <div class="max-w-7xl mx-auto w-full">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Left: Text -->
+                <div class="animate-fade-in">
+                    <p class="zara-subhead text-zara-muted mb-8 animate-fade-in">
+                        A 2-WEEK LIVE COURSE
+                    </p>
+                    <h1 class="zara-heading text-6xl md:text-7xl lg:text-8xl leading-none mb-10 animate-fade-in animate-delay-1">
+                        The New<br>AI-Native PM
+                    </h1>
+                    <p class="text-sm text-zara-muted leading-relaxed max-w-md mb-12 animate-fade-in animate-delay-2" style="font-weight: 300;">
+                        Go from "I use ChatGPT to ask questions" to building real products in two weeks. A live course for Product Managers, UX Designers, and ambitious builders.
+                    </p>
+
+                    <!-- CTA -->
+                    <div class="flex flex-col gap-6 animate-fade-in animate-delay-3">
+                        <a href="https://maven.com/aman-khan/coding-agents-for-product-managers"
+                           target="_blank"
+                           class="inline-block zara-subhead text-zara-black zara-underline pb-2 hover:opacity-60 transition-opacity w-fit">
+                            ENROLL NOW — $1,950
+                        </a>
+                        <p class="zara-subhead text-zara-light-muted">
+                            5.0 RATING ON MAVEN
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right: Image -->
+                <div class="relative animate-fade-in animate-delay-2">
+                    <img src="assets/ship10xfaster.webp" alt="AI-Native PM Course" class="w-full h-auto">
+                    <div class="absolute bottom-4 right-4 text-right">
+                        <p class="zara-subhead text-zara-muted">SPRING 2026</p>
+                        <p class="zara-subhead text-zara-muted">NEXT COHORT</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scroll indicator -->
+            <div class="flex flex-col items-center mt-16 animate-fade-in animate-delay-4">
+                <p class="zara-subhead text-zara-muted mb-4">SCROLL DOWN</p>
+                <div class="scroll-line"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What You'll Learn - Zara minimal style -->
+    <section id="learn" class="py-32 px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20">
+                <h2 class="zara-heading text-5xl md:text-6xl mb-4">
+                    The Curriculum
+                </h2>
+                <p class="zara-subhead text-zara-muted">11 LIVE SESSIONS OVER 2 WEEKS</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <!-- Card 1 -->
+                <div class="zara-card text-center">
+                    <p class="text-zara-accent zara-subhead mb-6">01</p>
+                    <h3 class="text-lg mb-4" style="font-weight: 400; letter-spacing: 0.05em;">
+                        BRAINSTORM FEATURES
+                    </h3>
+                    <p class="text-zara-muted text-sm leading-relaxed" style="font-weight: 300;">
+                        Setup coding agents on real codebases. Transform them into senior tech leads that understand your product.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="zara-card text-center">
+                    <p class="text-zara-accent zara-subhead mb-6">02</p>
+                    <h3 class="text-lg mb-4" style="font-weight: 400; letter-spacing: 0.05em;">
+                        BUILD PROTOTYPES
+                    </h3>
+                    <p class="text-zara-muted text-sm leading-relaxed" style="font-weight: 300;">
+                        Use agents as your UX designer and build many prototypes at once to make better tradeoffs quickly.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="zara-card text-center">
+                    <p class="text-zara-accent zara-subhead mb-6">03</p>
+                    <h3 class="text-lg mb-4" style="font-weight: 400; letter-spacing: 0.05em;">
+                        MASTER CURSOR
+                    </h3>
+                    <p class="text-zara-muted text-sm leading-relaxed" style="font-weight: 300;">
+                        Manage agent memory, MCP connectors, and developer tools to dramatically improve output quality.
+                    </p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="zara-card text-center">
+                    <p class="text-zara-accent zara-subhead mb-6">04</p>
+                    <h3 class="text-lg mb-4" style="font-weight: 400; letter-spacing: 0.05em;">
+                        AI EVERYWHERE
+                    </h3>
+                    <p class="text-zara-muted text-sm leading-relaxed" style="font-weight: 300;">
+                        Analyze customer data, write docs, perform QA—all in context of your application.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instructors - Zara editorial style -->
+    <section id="instructors" class="py-32 px-8 bg-zara-light">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20">
+                <h2 class="zara-heading text-5xl md:text-6xl mb-4">
+                    Your Instructors
+                </h2>
+                <p class="zara-subhead text-zara-muted">INDUSTRY EXPERTS IN AI & PRODUCT</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Aman -->
+                <div class="bg-white p-8 md:p-10">
+                    <img src="assets/aman.webp" alt="Aman Khan" class="w-24 h-24 object-cover rounded-full mb-6">
+                    <p class="zara-subhead text-zara-accent mb-2">HEAD OF PRODUCT @ ARIZE AI</p>
+                    <h3 class="text-xl mb-3" style="font-weight: 400;">Aman Khan</h3>
+                    <p class="text-zara-muted text-sm leading-relaxed mb-5" style="font-weight: 300;">
+                        Featured on Lenny's List. Built AI products used by Uber, Duolingo, and Instacart. Teaches on deeplearning.ai.
+                    </p>
+                    <div class="flex items-center gap-5 mb-5">
+                        <img src="assets/spotify.webp" alt="Spotify" class="h-4 company-logo object-contain">
+                        <img src="assets/cruise.svg" alt="Cruise" class="h-3 company-logo object-contain">
+                        <img src="assets/apple.svg" alt="Apple" class="h-3 company-logo object-contain">
+                        <img src="assets/UCB.svg" alt="UC Berkeley" class="h-4 company-logo object-contain">
+                    </div>
+                    <div class="flex items-center gap-5">
+                        <a href="https://www.linkedin.com/in/amanberkeley" target="_blank" class="zara-subhead text-zara-muted hover:text-zara-black transition-colors">
+                            LINKEDIN
+                        </a>
+                        <a href="https://x.com/_amankhan" target="_blank" class="zara-subhead text-zara-muted hover:text-zara-black transition-colors">
+                            X
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Eric -->
+                <div class="bg-white p-8 md:p-10">
+                    <img src="assets/eric.webp" alt="Eric Xiao" class="w-24 h-24 object-cover rounded-full mb-6">
+                    <p class="zara-subhead text-zara-accent mb-2">FOUNDER & AI PM</p>
+                    <h3 class="text-xl mb-3" style="font-weight: 400;">Eric Xiao</h3>
+                    <p class="text-zara-muted text-sm leading-relaxed mb-5" style="font-weight: 300;">
+                        Building an AI app with 100k+ downloads. Holds a patent for an AI shopping assistant. 10+ years in product.
+                    </p>
+                    <div class="flex items-center gap-5 mb-5">
+                        <img src="assets/meta.svg" alt="Meta" class="h-3 company-logo object-contain">
+                        <img src="assets/adobe.svg" alt="Adobe" class="h-3 company-logo object-contain">
+                        <img src="assets/arize.svg" alt="Arize AI" class="h-3 company-logo object-contain">
+                        <img src="assets/fountain.svg" alt="Fountain" class="h-3 company-logo object-contain">
+                    </div>
+                    <div class="flex items-center gap-5">
+                        <a href="https://www.linkedin.com/in/ericxiao/" target="_blank" class="zara-subhead text-zara-muted hover:text-zara-black transition-colors">
+                            LINKEDIN
+                        </a>
+                        <a href="https://x.com/exiao3" target="_blank" class="zara-subhead text-zara-muted hover:text-zara-black transition-colors">
+                            X
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What's Included - Zara minimal list style -->
+    <section class="py-32 px-8">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-20">
+                <h2 class="zara-heading text-5xl md:text-6xl mb-4">
+                    What's Included
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-x-16 gap-y-8">
+                <div class="py-4 border-b border-zara-border">
+                    <p class="text-sm mb-1" style="font-weight: 400; letter-spacing: 0.03em;">11 LIVE SESSIONS OVER 2 WEEKS</p>
+                    <p class="text-zara-muted text-xs" style="font-weight: 300;">~5 hours per week, with optional office hours</p>
+                </div>
+                <div class="py-4 border-b border-zara-border">
+                    <p class="text-sm mb-1" style="font-weight: 400; letter-spacing: 0.03em;">ACCESS TO PROFESSIONAL ENGINEERS</p>
+                    <p class="text-zara-muted text-xs" style="font-weight: 300;">You won't feel blocked by technical skills</p>
+                </div>
+                <div class="py-4 border-b border-zara-border">
+                    <p class="text-sm mb-1" style="font-weight: 400; letter-spacing: 0.03em;">LIFETIME ACCESS TO RECORDINGS</p>
+                    <p class="text-zara-muted text-xs" style="font-weight: 300;">Go back to course content whenever you need</p>
+                </div>
+                <div class="py-4 border-b border-zara-border">
+                    <p class="text-sm mb-1" style="font-weight: 400; letter-spacing: 0.03em;">AI PRODUCT PLAYBOOK SLACK COMMUNITY</p>
+                    <p class="text-zara-muted text-xs" style="font-weight: 300;">Direct access to Aman & Eric anytime</p>
+                </div>
+                <div class="py-4 border-b border-zara-border">
+                    <p class="text-sm mb-1" style="font-weight: 400; letter-spacing: 0.03em;">CERTIFICATE OF COMPLETION</p>
+                    <p class="text-zara-muted text-xs" style="font-weight: 300;">Share on LinkedIn or with your employer</p>
+                </div>
+                <div class="py-4 border-b border-zara-border">
+                    <p class="text-sm mb-1" style="font-weight: 400; letter-spacing: 0.03em;">MAVEN SATISFACTION GUARANTEE</p>
+                    <p class="text-zara-muted text-xs" style="font-weight: 300;">Full refund available until halfway point</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews - Zara editorial quote style -->
+    <section class="py-32 px-8 bg-zara-light">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-20">
+                <h2 class="zara-heading text-5xl md:text-6xl mb-4">
+                    Student Reviews
+                </h2>
+                <p class="zara-subhead text-zara-muted">5.0 RATING ON MAVEN</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-1">
+                <!-- Review 1 -->
+                <blockquote class="bg-white p-10">
+                    <p class="zara-heading text-2xl md:text-3xl leading-snug mb-8">
+                        "This course is a game changer."
+                    </p>
+                    <p class="text-zara-muted text-sm leading-relaxed mb-8" style="font-weight: 300;">
+                        As a PM I've had a lot of FOMO recently that I'm falling behind with AI tools. This gave me exactly what I needed to catch up and get ahead.
+                    </p>
+                    <footer>
+                        <p class="text-sm mb-1" style="font-weight: 400;">BLAKE</p>
+                        <p class="zara-subhead text-zara-muted">PRODUCT LEAD @ ALLTRAILS</p>
+                    </footer>
+                </blockquote>
+
+                <!-- Review 2 -->
+                <blockquote class="bg-white p-10">
+                    <p class="zara-heading text-2xl md:text-3xl leading-snug mb-8">
+                        "Incredibly valuable."
+                    </p>
+                    <p class="text-zara-muted text-sm leading-relaxed mb-8" style="font-weight: 300;">
+                        I'm a designer with no technical background, and even though this class is designed for PMs, it was incredibly valuable. I can now build working prototypes myself.
+                    </p>
+                    <footer>
+                        <p class="text-sm mb-1" style="font-weight: 400;">JERRY</p>
+                        <p class="zara-subhead text-zara-muted">UX LEAD @ GARTNER</p>
+                    </footer>
+                </blockquote>
+
+                <!-- Review 3 -->
+                <blockquote class="bg-white p-10">
+                    <p class="zara-heading text-2xl md:text-3xl leading-snug mb-8">
+                        "Above and beyond."
+                    </p>
+                    <p class="text-zara-muted text-sm leading-relaxed mb-8" style="font-weight: 300;">
+                        Very concrete and valuable course! Aman and Eric consistently went above and beyond, offering additional office hours and troubleshooting help.
+                    </p>
+                    <footer>
+                        <p class="text-sm mb-1" style="font-weight: 400;">MEL</p>
+                        <p class="zara-subhead text-zara-muted">CX LEAD @ DRAGONFLY</p>
+                    </footer>
+                </blockquote>
+            </div>
+        </div>
+    </section>
+
+    <!-- Free Resources - Zara minimal text style -->
+    <section class="py-32 px-8 bg-zara-light">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-20">
+                <h2 class="zara-heading text-5xl md:text-6xl mb-4">
+                    Free Resources
+                </h2>
+                <p class="zara-subhead text-zara-muted">WATCH FREE RECORDINGS</p>
+            </div>
+
+            <div class="space-y-0">
+                <!-- Recording 1 -->
+                <a href="https://maven.com/p/caee21/cursor-for-product-managers" target="_blank" class="group block bg-white p-8 border-b border-zara-border hover:bg-zara-light transition-colors">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="zara-subhead text-zara-accent mb-2">01</p>
+                            <p class="text-lg mb-1" style="font-weight: 400; letter-spacing: 0.03em;">CURSOR FOR PRODUCT MANAGERS</p>
+                            <p class="text-zara-muted text-sm" style="font-weight: 300;">Introduction to AI coding agents for non-technical builders</p>
+                        </div>
+                        <p class="zara-subhead text-zara-muted group-hover:text-zara-accent transition-colors">
+                            WATCH
+                        </p>
+                    </div>
+                </a>
+
+                <!-- Recording 2 -->
+                <a href="https://maven.com/p/69721a/how-to-ship-finished-features-from-single-line-prompts" target="_blank" class="group block bg-white p-8 border-b border-zara-border hover:bg-zara-light transition-colors">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="zara-subhead text-zara-accent mb-2">02</p>
+                            <p class="text-lg mb-1" style="font-weight: 400; letter-spacing: 0.03em;">HOW TO SHIP FINISHED FEATURES</p>
+                            <p class="text-zara-muted text-sm" style="font-weight: 300;">From single line prompts to production-ready code</p>
+                        </div>
+                        <p class="zara-subhead text-zara-muted group-hover:text-zara-accent transition-colors">
+                            WATCH
+                        </p>
+                    </div>
+                </a>
+
+                <!-- Recording 3 -->
+                <a href="https://maven.com/p/34afdb/ai-systems-for-p-ms-to-ship-10x-faster" target="_blank" class="group block bg-white p-8 hover:bg-zara-light transition-colors">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="zara-subhead text-zara-accent mb-2">03</p>
+                            <p class="text-lg mb-1" style="font-weight: 400; letter-spacing: 0.03em;">AI SYSTEMS FOR PMS</p>
+                            <p class="text-zara-muted text-sm" style="font-weight: 300;">Build systems that help you ship 10x faster</p>
+                        </div>
+                        <p class="zara-subhead text-zara-muted group-hover:text-zara-accent transition-colors">
+                            WATCH
+                        </p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA - Zara editorial style -->
+    <section class="py-32 px-8 bg-zara-black text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="zara-heading text-5xl md:text-7xl mb-8 text-white">
+                Ready to become an AI-native PM?
+            </h2>
+            <p class="text-white/50 mb-12 text-sm" style="font-weight: 300; letter-spacing: 0.05em;">
+                Join the next cohort and transform how you build products.
+            </p>
+
+            <a href="https://maven.com/aman-khan/coding-agents-for-product-managers"
+               target="_blank"
+               class="inline-block zara-subhead text-white zara-underline pb-2 hover:opacity-60 transition-opacity mb-16" style="border-color: white;">
+                ENROLL NOW — $1,950
+            </a>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-8 text-white/40 zara-subhead">
+                <a href="https://maven.com/expense" target="_blank" class="hover:text-white transition-colors">
+                    GET REIMBURSED BY EMPLOYER
+                </a>
+                <a href="https://maven.com/aman-khan/coding-agents-for-product-managers/sales" target="_blank" class="hover:text-white transition-colors">
+                    BULK PURCHASES
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer - Zara minimal style -->
+    <footer class="py-16 px-8">
+        <div class="max-w-7xl mx-auto">
+            <!-- Legal links -->
+            <div class="flex flex-wrap items-center justify-center gap-6 mb-8 zara-subhead text-zara-light-muted">
+                <a href="https://maven.com/aman-khan/coding-agents-for-product-managers#faqs" target="_blank" class="hover:text-zara-black transition-colors">FAQ</a>
+                <a href="https://maven.com/terms" target="_blank" class="hover:text-zara-black transition-colors">TERMS OF USE</a>
+                <a href="https://maven.com/privacy" target="_blank" class="hover:text-zara-black transition-colors">PRIVACY POLICY</a>
+            </div>
+
+            <!-- Copyright -->
+            <p class="text-center zara-subhead text-zara-light-muted">&copy; 2026 CURSOR FOR PMS</p>
+        </div>
+    </footer>
+
+    <!-- Style Switcher - Zara minimal -->
+    <div id="style-switcher" class="fixed bottom-8 right-8 z-[9999]">
+        <button id="switcher-toggle" class="zara-subhead text-zara-muted hover:text-zara-black transition-colors flex items-center gap-2">
+            <span class="w-3 h-3 bg-zara-accent"></span>
+            THEME
+        </button>
+        <div id="switcher-menu" class="hidden absolute bottom-8 right-0 bg-white border border-zara-border p-6 min-w-[180px]">
+            <p class="zara-subhead text-zara-muted mb-4">SELECT THEME</p>
+            <div class="space-y-3">
+                <a href="default.html" class="flex items-center gap-3 zara-subhead text-zara-muted hover:text-zara-black transition-colors">
+                    <span class="w-3 h-3 bg-[#c9553d]"></span>
+                    DEFAULT
+                </a>
+                <a href="notion.html" class="flex items-center gap-3 zara-subhead text-zara-muted hover:text-zara-black transition-colors">
+                    <span class="w-3 h-3 bg-[#000000]"></span>
+                    NOTION
+                </a>
+                <a href="zara.html" class="flex items-center gap-3 zara-subhead text-zara-black">
+                    <span class="w-3 h-3 bg-zara-accent"></span>
+                    ZARA
+                </a>
+                <a href="neural.html" class="flex items-center gap-3 zara-subhead text-zara-muted hover:text-zara-black transition-colors">
+                    <span class="w-3 h-3 bg-[#00ff88]"></span>
+                    HACKER
+                </a>
+            </div>
+        </div>
+    </div>
+    <script>
+        const toggle = document.getElementById('switcher-toggle');
+        const menu = document.getElementById('switcher-menu');
+        toggle.addEventListener('click', () => menu.classList.toggle('hidden'));
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('#style-switcher')) menu.classList.add('hidden');
+        });
+    </script>
+
+</body>
+</html>
