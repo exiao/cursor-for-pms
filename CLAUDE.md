@@ -26,10 +26,11 @@ This project contains landing page design explorations for **Cursor for Product 
 ## How it's built
 
 ### Tech Stack
-- **HTML5** — Single-file pages, no build step required
+- **HTML5** — Single-file pages
 - **Tailwind CSS** — Via CDN (`https://cdn.tailwindcss.com`)
 - **Font Awesome 6.5.1** — Icon library via CDN
 - **Google Fonts** — Typography loaded per-design
+- **Render.com** — Static site hosting with build script for env var injection
 
 ### Design Approach
 Each design option is a complete, standalone HTML file that can be opened directly in a browser. No compilation, bundling, or server required.
@@ -68,8 +69,13 @@ zurich-v1/
 │   ├── fountain.svg         # Company logo
 │   ├── meta.svg             # Company logo
 │   ├── spotify.webp         # Company logo
-│   └── UCB.svg              # Company logo (UC Berkeley)
+│   ├── UCB.svg              # Company logo (UC Berkeley)
+│   ├── og-cursor.png        # OG image for Cursor (social sharing)
+│   └── og-claude.png        # OG image for Claude Code (social sharing)
 │
+├── build.sh                  # Build script for Render (injects env vars)
+├── og-image.html             # OG image template (Cursor)
+├── og-image-claude.html      # OG image template (Claude Code)
 ├── index.html                # Design: Warm editorial "Studio" (cream/terracotta) - main entry point
 ├── neural.html               # Design: Dark tech brutalism (green/pink)
 ├── notion.html               # Design: Notion-inspired (black/white/blue)
@@ -145,3 +151,55 @@ Each HTML file contains its own `<style>` block and Tailwind config. Edit inline
 2. Modify the color palette in `tailwind.config`
 3. Update the `<style>` block with new CSS
 4. Swap out Google Fonts links as needed
+
+---
+
+## Deployment (Render.com)
+
+The site is deployed as a static site on Render.com with environment variable injection.
+
+### Build Configuration
+- **Build Command:** `./build.sh`
+- **Publish Directory:** `.`
+
+### Environment Variables
+
+| Variable | Description | Example |
+|----------|-------------|---------|
+| `SITE_URL` | Full URL of the deployed site | `https://cursorforpms.com` |
+| `OG_IMAGE` | OG image filename to use | `og-cursor.png` or `og-claude.png` |
+
+### How It Works
+1. `build.sh` runs at deploy time
+2. Replaces `__SITE_URL__` and `__OG_IMAGE__` placeholders in `index.html`
+3. Social crawlers see the correct absolute URLs for OG images
+
+### Testing Locally
+```bash
+SITE_URL=https://cursorforpms.com OG_IMAGE=og-cursor.png ./build.sh
+```
+
+---
+
+## Social Sharing (OG Images)
+
+### Available OG Images
+| Image | File | Use For |
+|-------|------|---------|
+| ![Cursor](assets/og-cursor.png) | `og-cursor.png` | Cursor for Product Managers |
+| ![Claude](assets/og-claude.png) | `og-claude.png` | Claude Code for Product Managers |
+
+### OG Image Specs
+- **Dimensions:** 1200×630px (recommended for iMessage, Twitter, LinkedIn)
+- **Format:** PNG
+- **Style:** Matches the "Studio" theme (cream background, Playfair Display font)
+
+### Regenerating OG Images
+1. Edit `og-image.html` or `og-image-claude.html`
+2. Open in browser at 1200×630 viewport
+3. Take screenshot and save to `assets/`
+
+### Testing OG Tags
+After deploying, test at:
+- https://www.opengraph.xyz/
+- https://cards-dev.twitter.com/validator
