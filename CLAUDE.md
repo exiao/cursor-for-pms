@@ -172,10 +172,10 @@ The site is deployed as **two separate static sites** on Render.com, each with d
 
 ### Environment Variables
 
-| Site | SITE_URL | OG_IMAGE |
-|------|----------|----------|
-| Cursor | `https://cursorpm.com` | `og-cursor.png` |
-| Claude Code | `https://claudecodepm.com` | `og-claude.png` |
+| Site | SITE_URL | OG_IMAGE | OG_TITLE |
+|------|----------|----------|----------|
+| Cursor | `https://cursorpm.com` | `og-cursor.png` | `Cursor for Product Managers` |
+| Claude Code | `https://claudecodepm.com` | `og-claude.png` | `Claude Code for Product Managers` |
 
 ### How It Works
 1. `build.sh` runs at deploy time
@@ -186,10 +186,10 @@ The site is deployed as **two separate static sites** on Render.com, each with d
 ### Testing Locally
 ```bash
 # Test Cursor build
-SITE_URL=https://cursorpm.com OG_IMAGE=og-cursor.png ./build.sh
+SITE_URL=https://cursorpm.com OG_IMAGE=og-cursor.png OG_TITLE="Cursor for Product Managers" ./build.sh
 
 # Test Claude Code build
-SITE_URL=https://claudecodepm.com OG_IMAGE=og-claude.png ./build.sh
+SITE_URL=https://claudecodepm.com OG_IMAGE=og-claude.png OG_TITLE="Claude Code for Product Managers" ./build.sh
 ```
 
 ---
