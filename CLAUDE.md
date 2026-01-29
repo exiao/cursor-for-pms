@@ -41,7 +41,7 @@ Each design option is a complete, standalone HTML file that can be opened direct
 - CSS animations for page load and hover effects
 - Grayscale filter effect on company logos (color on hover)
 - Typewriter animations for module demonstrations
-- Favicon with cursor emoji (🖱️)
+- Domain-specific favicons (cursor icon for cursorpm.com, terminal icon for claudecodepm.com)
 
 ---
 
@@ -172,24 +172,24 @@ The site is deployed as **two separate static sites** on Render.com, each with d
 
 ### Environment Variables
 
-| Site | SITE_URL | OG_IMAGE | OG_TITLE |
-|------|----------|----------|----------|
-| Cursor | `https://cursorpm.com` | `og-cursor.png` | `Cursor for Product Managers` |
-| Claude Code | `https://claudecodepm.com` | `og-claude.png` | `Claude Code for Product Managers` |
+| Site | SITE_URL | OG_IMAGE | OG_TITLE | FAVICON |
+|------|----------|----------|----------|---------|
+| Cursor | `https://cursorpm.com` | `og-cursor.png` | `Cursor for Product Managers` | `cursor` |
+| Claude Code | `https://claudecodepm.com` | `og-claude.png` | `Claude Code for Product Managers` | `terminal` |
 
 ### How It Works
 1. `build.sh` runs at deploy time
-2. Replaces `__SITE_URL__` and `__OG_IMAGE__` placeholders in `index.html`
+2. Replaces `__SITE_URL__`, `__OG_IMAGE__`, `__OG_TITLE__`, and `__FAVICON__` placeholders in `index.html`
 3. Social crawlers see the correct absolute URLs for OG images
-4. Each domain serves its own branded OG image
+4. Each domain serves its own branded OG image and favicon
 
 ### Testing Locally
 ```bash
 # Test Cursor build
-SITE_URL=https://cursorpm.com OG_IMAGE=og-cursor.png OG_TITLE="Cursor for Product Managers" ./build.sh
+SITE_URL=https://cursorpm.com OG_IMAGE=og-cursor.png OG_TITLE="Cursor for Product Managers" FAVICON=cursor ./build.sh
 
 # Test Claude Code build
-SITE_URL=https://claudecodepm.com OG_IMAGE=og-claude.png OG_TITLE="Claude Code for Product Managers" ./build.sh
+SITE_URL=https://claudecodepm.com OG_IMAGE=og-claude.png OG_TITLE="Claude Code for Product Managers" FAVICON=terminal ./build.sh
 ```
 
 ---
@@ -216,3 +216,20 @@ SITE_URL=https://claudecodepm.com OG_IMAGE=og-claude.png OG_TITLE="Claude Code f
 After deploying, test at:
 - https://www.opengraph.xyz/
 - https://cards-dev.twitter.com/validator
+
+---
+
+## Favicons
+
+Domain-specific favicons are selected at build time via the `FAVICON` environment variable.
+
+### Available Favicons
+| Type | FAVICON Value | File | Use For |
+|------|---------------|------|---------|
+| Cursor | `cursor` | `assets/favicon-cursor.svg` | cursorpm.com |
+| Terminal | `terminal` | `assets/favicon-terminal.svg` | claudecodepm.com |
+
+### Favicon Specs
+- **Format:** SVG files in assets folder
+- **Style:** Dark rounded rectangle (#191919) with white icon, 20px border radius
+- **Size:** 100×100 viewBox, scales to any favicon size
