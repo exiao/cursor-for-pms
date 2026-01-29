@@ -39,13 +39,15 @@ Each design option is a complete, standalone HTML file that can be opened direct
 - CSS custom properties for theme colors
 - CSS animations for page load and hover effects
 - Grayscale filter effect on company logos (color on hover)
+- Typewriter animations for module demonstrations
+- Favicon with cursor emoji (🖱️)
 
 ---
 
 ## Folder Structure
 
 ```
-albuquerque-v2/
+zurich-v1/
 ├── CLAUDE.md                 # This file - project documentation
 ├── README.md                 # Basic readme
 ├── styles.md                 # Active style guide (see below)
@@ -53,7 +55,8 @@ albuquerque-v2/
 ├── styles-notion.md          # Notion-inspired style guide
 │
 ├── assets/                   # Images and logos
-│   ├── aman.webp            # Instructor photo - Aman Khan
+│   ├── aman.jpg             # Instructor photo - Aman Khan (primary)
+│   ├── aman.webp            # Instructor photo - Aman Khan (legacy)
 │   ├── eric.webp            # Instructor photo - Eric Xiao
 │   ├── cursorforpms.webp    # Course logo
 │   ├── ship10xfaster.webp   # Course preview image
@@ -67,7 +70,7 @@ albuquerque-v2/
 │   ├── spotify.webp         # Company logo
 │   └── UCB.svg              # Company logo (UC Berkeley)
 │
-├── default.html              # Design: Warm editorial "Studio" (cream/terracotta)
+├── index.html                # Design: Warm editorial "Studio" (cream/terracotta) - main entry point
 ├── neural.html               # Design: Dark tech brutalism (green/pink)
 ├── notion.html               # Design: Notion-inspired (black/white/blue)
 ├── zara.html                 # Design: Zara-inspired minimalist (black/white/red)
@@ -85,12 +88,13 @@ albuquerque-v2/
 
 All pages include a **floating style switcher** (bottom-right corner) that allows switching between themes.
 
-### default.html — "Studio" (Warm Editorial)
+### index.html — "Studio" (Warm Editorial)
 - **Aesthetic**: Sophisticated editorial magazine feel
 - **Background**: Cream (#f7f5f0)
 - **Accents**: Terracotta (#c9553d), Sage (#4a6741)
 - **Typography**: Playfair Display (serif) + Source Serif 4
 - **Vibe**: Refined, warm, thoughtful
+- **Note**: Primary entry point (renamed from default.html)
 
 ### neural.html — "Neural" (Dark Tech Brutalism)
 - **Aesthetic**: Terminal-style, raw tech, unapologetic
