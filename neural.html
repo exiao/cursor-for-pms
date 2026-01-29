@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursor for Product Managers — NEURAL</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'void': '#0a0a0b',
+                        'surface': '#141416',
+                        'edge': '#2a2a2e',
+                        'neon': '#00ff88',
+                        'hot': '#ff3366',
+                        'text': '#e8e8e8',
+                        'muted': '#6b6b70',
+                    },
+                    fontFamily: {
+                        mono: ['Space Mono', 'monospace'],
+                        sans: ['IBM Plex Sans', 'sans-serif'],
+                        serif: ['Instrument Serif', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            background-color: #0a0a0b;
+            color: #e8e8e8;
+        }
+
+        /* Scanline overlay */
+        .scanlines::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 255, 136, 0.02) 2px,
+                rgba(0, 255, 136, 0.02) 4px
+            );
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        /* Glitch effect */
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+        .glitch:hover {
+            animation: glitch 0.3s ease;
+            text-shadow: 2px 0 #ff3366, -2px 0 #00ff88;
+        }
+
+        /* Cursor blink */
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        .cursor-blink::after {
+            content: '█';
+            color: #00ff88;
+            animation: blink 1s step-end infinite;
+            margin-left: 2px;
+        }
+
+        /* Terminal typing */
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        .typewriter {
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typewriter 2s steps(40) forwards;
+        }
+
+        /* Glow pulse */
+        @keyframes glow-pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 136, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(0, 255, 136, 0.6); }
+        }
+        .glow-pulse {
+            animation: glow-pulse 2s ease-in-out infinite;
+        }
+
+        /* Grid background */
+        .grid-bg {
+            background-image:
+                linear-gradient(rgba(42, 42, 46, 0.3) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(42, 42, 46, 0.3) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* ASCII border */
+        .ascii-border {
+            border: 1px solid #2a2a2e;
+            position: relative;
+        }
+        .ascii-border::before {
+            content: '┌';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            color: #00ff88;
+            font-family: 'Space Mono', monospace;
+        }
+        .ascii-border::after {
+            content: '┘';
+            position: absolute;
+            bottom: -1px;
+            right: -1px;
+            color: #00ff88;
+            font-family: 'Space Mono', monospace;
+        }
+
+        /* Company logo */
+        .company-logo {
+            filter: grayscale(100%) brightness(2);
+            opacity: 0.5;
+            transition: all 0.3s ease;
+        }
+        .company-logo:hover {
+            filter: grayscale(0%) brightness(1);
+            opacity: 1;
+        }
+
+        /* Fade in animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        .animate-delay-1 { animation-delay: 0.1s; opacity: 0; }
+        .animate-delay-2 { animation-delay: 0.2s; opacity: 0; }
+        .animate-delay-3 { animation-delay: 0.3s; opacity: 0; }
+        .animate-delay-4 { animation-delay: 0.4s; opacity: 0; }
+    </style>
+</head>
+<body class="bg-void text-text antialiased scanlines">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-void/95 backdrop-blur-sm border-b border-edge">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3">
+                <div class="w-10 h-10 border border-neon flex items-center justify-center font-mono text-neon text-sm">
+                    C4PM
+                </div>
+                <span class="font-mono text-sm text-muted hidden sm:block">cursor_for_pms.exe</span>
+            </a>
+            <a href="https://maven.com/aman-khan/coding-agents-for-product-managers"
+               target="_blank"
+               class="bg-neon hover:bg-neon/90 text-void px-5 py-2.5 font-mono text-sm font-bold transition-all duration-200 glow-pulse flex items-center gap-2">
+                <i class="fa-solid fa-terminal"></i>
+                JOIN_WAITLIST
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-20 pb-24 px-6 grid-bg relative overflow-hidden">
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <!-- Status badge -->
+            <div class="inline-flex items-center gap-3 border border-edge bg-surface px-4 py-2 mb-8 font-mono text-sm animate-fade-in">
+                <span class="w-2 h-2 bg-neon rounded-full animate-pulse"></span>
+                <span class="text-muted">COHORT_03</span>
+                <span class="text-neon">LOADING...</span>
+                <span class="text-muted">████████░░ 80%</span>
+            </div>
+
+            <!-- Main headline -->
+            <h1 class="font-mono text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-8 animate-fade-in animate-delay-1">
+                <span class="text-muted">BECOME AN</span><br>
+                <span class="text-neon glitch">AI-NATIVE</span>
+                <span class="text-hot">_</span><br>
+                <span class="font-serif italic text-text">Product Manager</span>
+            </h1>
+
+            <!-- Terminal box -->
+            <div class="ascii-border bg-surface p-6 mb-10 text-left max-w-2xl mx-auto animate-fade-in animate-delay-2">
+                <div class="font-mono text-sm mb-4 text-muted">
+                    <span class="text-neon">$</span> ./transform --from "chatgpt_user" --to "builder"
+                </div>
+                <div class="font-mono text-lg">
+                    <span class="text-muted">[INPUT]</span> <span class="text-text">"I use ChatGPT to ask questions"</span>
+                </div>
+                <div class="font-mono text-lg text-neon flex items-center gap-2 mt-2">
+                    <i class="fa-solid fa-arrow-right"></i>
+                    <span>[OUTPUT]</span> <span class="text-hot font-bold">BUILDING REAL PRODUCTS</span>
+                </div>
+                <div class="font-mono text-sm text-muted mt-4">
+                    <span class="text-neon">// ETA:</span> 14 days | <span class="text-neon">// FORMAT:</span> live cohort
+                </div>
+            </div>
+
+            <!-- Stats row -->
+            <div class="flex flex-wrap justify-center gap-6 mb-10 animate-fade-in animate-delay-3">
+                <div class="border border-edge bg-surface px-6 py-3 font-mono">
+                    <span class="text-neon">★★★★★</span>
+                    <span class="text-muted ml-2">5.0_RATING</span>
+                </div>
+                <div class="border border-edge bg-surface px-6 py-3 font-mono">
+                    <span class="text-hot">11</span>
+                    <span class="text-muted ml-2">SESSIONS</span>
+                </div>
+                <div class="border border-edge bg-surface px-6 py-3 font-mono">
+                    <span class="text-neon">$1,950</span>
+                    <span class="text-muted ml-2">USD</span>
+                </div>
+            </div>
+
+            <!-- Quote -->
+            <div class="font-mono text-sm text-muted animate-fade-in animate-delay-4">
+                <span class="text-edge">/*</span> "This course is a game changer" <span class="text-edge">*/</span><br>
+                <span class="text-neon">@blake</span> // Product Lead @ AllTrails
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Preview -->
+    <section class="pb-16 px-6">
+        <div class="max-w-5xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="relative group overflow-hidden border border-edge">
+                    <img src="assets/shipfinishedfeatures.webp" alt="Ship Finished Features" class="w-full h-64 object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                    <div class="absolute inset-0 bg-gradient-to-t from-void via-transparent to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6 font-mono">
+                        <p class="text-neon text-sm mb-1">> FEATURE_01</p>
+                        <p class="text-text">Ship Finished Features</p>
+                        <p class="text-muted text-sm">from single line prompts</p>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden border border-edge">
+                    <img src="assets/ship10xfaster.webp" alt="Ship 10x Faster" class="w-full h-64 object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                    <div class="absolute inset-0 bg-gradient-to-t from-void via-transparent to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6 font-mono">
+                        <p class="text-hot text-sm mb-1">> FEATURE_02</p>
+                        <p class="text-text">AI Systems for PMs</p>
+                        <p class="text-muted text-sm">ship 10x faster</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Divider -->
+    <div class="max-w-4xl mx-auto px-6">
+        <div class="border-t border-edge"></div>
+        <div class="font-mono text-xs text-muted text-center py-4">
+            ════════════════════════ MODULES ════════════════════════
+        </div>
+    </div>
+
+    <!-- What You'll Learn -->
+    <section class="py-16 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="font-mono text-2xl md:text-3xl font-bold text-center mb-4">
+                <span class="text-neon">&lt;</span>WHAT_YOU_LEARN<span class="text-neon">/&gt;</span>
+            </h2>
+            <p class="text-muted text-center mb-12 font-mono text-sm">// core modules unlocked on enrollment</p>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Module 1 -->
+                <div class="border border-edge bg-surface p-6 hover:border-neon transition-colors group">
+                    <div class="font-mono text-neon text-xs mb-4">[01]</div>
+                    <div class="w-12 h-12 border border-neon flex items-center justify-center mb-4 group-hover:bg-neon group-hover:text-void transition-colors">
+                        <i class="fa-solid fa-lightbulb text-xl"></i>
+                    </div>
+                    <h3 class="font-mono font-bold text-lg mb-3">BRAINSTORM</h3>
+                    <p class="text-muted text-sm leading-relaxed">
+                        Setup coding agents on real codebases. Transform them into senior tech leads.
+                    </p>
+                </div>
+
+                <!-- Module 2 -->
+                <div class="border border-edge bg-surface p-6 hover:border-hot transition-colors group">
+                    <div class="font-mono text-hot text-xs mb-4">[02]</div>
+                    <div class="w-12 h-12 border border-hot flex items-center justify-center mb-4 group-hover:bg-hot group-hover:text-void transition-colors">
+                        <i class="fa-solid fa-cubes text-xl"></i>
+                    </div>
+                    <h3 class="font-mono font-bold text-lg mb-3">PROTOTYPE</h3>
+                    <p class="text-muted text-sm leading-relaxed">
+                        Use agents as UX designers. Build many prototypes to make better tradeoffs.
+                    </p>
+                </div>
+
+                <!-- Module 3 -->
+                <div class="border border-edge bg-surface p-6 hover:border-neon transition-colors group">
+                    <div class="font-mono text-neon text-xs mb-4">[03]</div>
+                    <div class="w-12 h-12 border border-neon flex items-center justify-center mb-4 group-hover:bg-neon group-hover:text-void transition-colors">
+                        <i class="fa-solid fa-wand-magic-sparkles text-xl"></i>
+                    </div>
+                    <h3 class="font-mono font-bold text-lg mb-3">CURSOR_MASTER</h3>
+                    <p class="text-muted text-sm leading-relaxed">
+                        Agent memory, MCP connectors, dev tools. Dramatically improve output quality.
+                    </p>
+                </div>
+
+                <!-- Module 4 -->
+                <div class="border border-edge bg-surface p-6 hover:border-hot transition-colors group">
+                    <div class="font-mono text-hot text-xs mb-4">[04]</div>
+                    <div class="w-12 h-12 border border-hot flex items-center justify-center mb-4 group-hover:bg-hot group-hover:text-void transition-colors">
+                        <i class="fa-solid fa-robot text-xl"></i>
+                    </div>
+                    <h3 class="font-mono font-bold text-lg mb-3">AI_EVERYWHERE</h3>
+                    <p class="text-muted text-sm leading-relaxed">
+                        Analyze data, write docs, perform QA—all in context of your application.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Divider -->
+    <div class="max-w-4xl mx-auto px-6">
+        <div class="border-t border-edge"></div>
+        <div class="font-mono text-xs text-muted text-center py-4">
+            ═══════════════════════ INSTRUCTORS ═══════════════════════
+        </div>
+    </div>
+
+    <!-- Instructors -->
+    <section class="py-16 px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="font-mono text-2xl md:text-3xl font-bold text-center mb-12">
+                <span class="text-neon">$</span> cat instructors.json
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Aman -->
+                <div class="border border-edge bg-surface p-8">
+                    <div class="flex items-start gap-6 mb-6">
+                        <img src="assets/aman.webp" alt="Aman Khan" class="w-24 h-24 object-cover border-2 border-neon">
+                        <div>
+                            <h3 class="font-mono font-bold text-xl text-neon">AMAN_KHAN</h3>
+                            <p class="text-hot font-mono text-sm">Head of Product @ Arize AI</p>
+                        </div>
+                    </div>
+                    <p class="text-muted text-sm leading-relaxed mb-4">
+                        Featured on Lenny's List. Built AI products used by Uber, Duolingo, Instacart. Teaches on deeplearning.ai.
+                    </p>
+                    <div class="flex items-center gap-4 mb-4">
+                        <img src="assets/spotify.webp" alt="Spotify" class="h-5 company-logo object-contain">
+                        <img src="assets/cruise.svg" alt="Cruise" class="h-4 company-logo object-contain">
+                        <img src="assets/apple.svg" alt="Apple" class="h-4 company-logo object-contain">
+                        <img src="assets/UCB.svg" alt="UC Berkeley" class="h-5 company-logo object-contain">
+                    </div>
+                    <div class="flex items-center gap-4 font-mono text-sm">
+                        <a href="https://www.linkedin.com/in/amanberkeley" target="_blank" class="text-muted hover:text-neon transition-colors">
+                            <i class="fa-brands fa-linkedin"></i> /amanberkeley
+                        </a>
+                        <a href="https://x.com/_amankhan" target="_blank" class="text-muted hover:text-neon transition-colors">
+                            <i class="fa-brands fa-x-twitter"></i> @_amankhan
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Eric -->
+                <div class="border border-edge bg-surface p-8">
+                    <div class="flex items-start gap-6 mb-6">
+                        <img src="assets/eric.webp" alt="Eric Xiao" class="w-24 h-24 object-cover border-2 border-hot">
+                        <div>
+                            <h3 class="font-mono font-bold text-xl text-hot">ERIC_XIAO</h3>
+                            <p class="text-neon font-mono text-sm">Founder & AI PM</p>
+                        </div>
+                    </div>
+                    <p class="text-muted text-sm leading-relaxed mb-4">
+                        Building an AI app with 100k+ downloads. Holds a patent for AI shopping assistant. 10+ years in product.
+                    </p>
+                    <div class="flex items-center gap-4 mb-4">
+                        <img src="assets/meta.svg" alt="Meta" class="h-4 company-logo object-contain">
+                        <img src="assets/adobe.svg" alt="Adobe" class="h-4 company-logo object-contain">
+                        <img src="assets/arize.svg" alt="Arize AI" class="h-4 company-logo object-contain">
+                        <img src="assets/fountain.svg" alt="Fountain" class="h-4 company-logo object-contain">
+                    </div>
+                    <div class="flex items-center gap-4 font-mono text-sm">
+                        <a href="https://www.linkedin.com/in/ericxiao/" target="_blank" class="text-muted hover:text-hot transition-colors">
+                            <i class="fa-brands fa-linkedin"></i> /ericxiao
+                        </a>
+                        <a href="https://x.com/exiao3" target="_blank" class="text-muted hover:text-hot transition-colors">
+                            <i class="fa-brands fa-x-twitter"></i> @exiao3
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Divider -->
+    <div class="max-w-4xl mx-auto px-6">
+        <div class="border-t border-edge"></div>
+        <div class="font-mono text-xs text-muted text-center py-4">
+            ════════════════════════ PACKAGE ════════════════════════
+        </div>
+    </div>
+
+    <!-- What's Included -->
+    <section class="py-16 px-6">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="font-mono text-2xl md:text-3xl font-bold text-center mb-12">
+                <span class="text-neon">{</span> PACKAGE_CONTENTS <span class="text-neon">}</span>
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="flex items-start gap-4 border border-edge bg-surface p-4">
+                    <div class="w-10 h-10 border border-neon flex items-center justify-center flex-shrink-0">
+                        <i class="fa-solid fa-video text-neon"></i>
+                    </div>
+                    <div>
+                        <p class="font-mono font-bold">11 LIVE SESSIONS</p>
+                        <p class="text-muted text-sm">~5 hours/week + office hours</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 border border-edge bg-surface p-4">
+                    <div class="w-10 h-10 border border-hot flex items-center justify-center flex-shrink-0">
+                        <i class="fa-solid fa-users text-hot"></i>
+                    </div>
+                    <div>
+                        <p class="font-mono font-bold">ENGINEER ACCESS</p>
+                        <p class="text-muted text-sm">Never feel blocked by tech</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 border border-edge bg-surface p-4">
+                    <div class="w-10 h-10 border border-neon flex items-center justify-center flex-shrink-0">
+                        <i class="fa-solid fa-infinity text-neon"></i>
+                    </div>
+                    <div>
+                        <p class="font-mono font-bold">LIFETIME RECORDINGS</p>
+                        <p class="text-muted text-sm">Replay content anytime</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 border border-edge bg-surface p-4">
+                    <div class="w-10 h-10 border border-hot flex items-center justify-center flex-shrink-0">
+                        <i class="fa-brands fa-slack text-hot"></i>
+                    </div>
+                    <div>
+                        <p class="font-mono font-bold">SLACK COMMUNITY</p>
+                        <p class="text-muted text-sm">Direct instructor access</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 border border-edge bg-surface p-4">
+                    <div class="w-10 h-10 border border-neon flex items-center justify-center flex-shrink-0">
+                        <i class="fa-solid fa-certificate text-neon"></i>
+                    </div>
+                    <div>
+                        <p class="font-mono font-bold">CERTIFICATE</p>
+                        <p class="text-muted text-sm">Share on LinkedIn</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 border border-edge bg-surface p-4">
+                    <div class="w-10 h-10 border border-hot flex items-center justify-center flex-shrink-0">
+                        <i class="fa-solid fa-shield-halved text-hot"></i>
+                    </div>
+                    <div>
+                        <p class="font-mono font-bold">SATISFACTION_GUARANTEE</p>
+                        <p class="text-muted text-sm">Full refund until midpoint</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Divider -->
+    <div class="max-w-4xl mx-auto px-6">
+        <div class="border-t border-edge"></div>
+        <div class="font-mono text-xs text-muted text-center py-4">
+            ════════════════════════ REVIEWS ════════════════════════
+        </div>
+    </div>
+
+    <!-- Reviews -->
+    <section class="py-16 px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="font-mono text-2xl md:text-3xl font-bold text-center mb-12">
+                <span class="text-neon">/*</span> STUDENT_REVIEWS <span class="text-neon">*/</span>
+            </h2>
+
+            <div class="space-y-6">
+                <!-- Review 1 -->
+                <div class="border border-edge bg-surface p-6">
+                    <div class="flex items-center gap-2 mb-4 font-mono text-sm">
+                        <span class="text-neon">★★★★★</span>
+                        <span class="text-muted">5.0</span>
+                    </div>
+                    <p class="text-lg mb-4 font-serif italic">
+                        "This course is a <span class="text-neon font-sans not-italic font-bold">game changer</span>. As a PM I've had a lot of FOMO recently that I'm falling behind with AI tools. This gave me exactly what I needed."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-neon text-void flex items-center justify-center font-mono font-bold">B</div>
+                        <div class="font-mono text-sm">
+                            <p class="text-text">@blake</p>
+                            <p class="text-muted">Product Lead @ AllTrails</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="border border-edge bg-surface p-6">
+                    <div class="flex items-center gap-2 mb-4 font-mono text-sm">
+                        <span class="text-neon">★★★★★</span>
+                        <span class="text-muted">5.0</span>
+                    </div>
+                    <p class="text-lg mb-4 font-serif italic">
+                        "I'm a designer with <span class="text-hot font-sans not-italic font-bold">no technical background</span>, and even though this class is designed for PMs, it was incredibly valuable."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-hot text-void flex items-center justify-center font-mono font-bold">J</div>
+                        <div class="font-mono text-sm">
+                            <p class="text-text">@jerry</p>
+                            <p class="text-muted">UX Lead @ Gartner</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="border border-edge bg-surface p-6">
+                    <div class="flex items-center gap-2 mb-4 font-mono text-sm">
+                        <span class="text-neon">★★★★★</span>
+                        <span class="text-muted">5.0</span>
+                    </div>
+                    <p class="text-lg mb-4 font-serif italic">
+                        "<span class="text-neon font-sans not-italic font-bold">Very concrete and valuable</span> course! Aman and Eric consistently went above and beyond with office hours and troubleshooting."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-neon text-void flex items-center justify-center font-mono font-bold">M</div>
+                        <div class="font-mono text-sm">
+                            <p class="text-text">@mel</p>
+                            <p class="text-muted">CX Lead @ Dragonfly</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who This Is For -->
+    <section class="py-16 px-6">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="font-mono text-2xl md:text-3xl font-bold text-center mb-12">
+                <span class="text-neon">if</span> (role === <span class="text-hot">"?"</span>) <span class="text-neon">{</span> enroll <span class="text-neon">}</span>
+            </h2>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="border border-edge bg-surface p-6 hover:border-neon transition-colors">
+                    <div class="w-12 h-12 border border-neon flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-chart-line text-neon"></i>
+                    </div>
+                    <h3 class="font-mono font-bold text-neon mb-2">PRODUCT_MANAGERS</h3>
+                    <p class="text-muted text-sm">Looking for best practices on AI-powered product development.</p>
+                </div>
+                <div class="border border-edge bg-surface p-6 hover:border-hot transition-colors">
+                    <div class="w-12 h-12 border border-hot flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-palette text-hot"></i>
+                    </div>
+                    <h3 class="font-mono font-bold text-hot mb-2">UX_DESIGNERS</h3>
+                    <p class="text-muted text-sm">Who want to bring ideas to life and build real applications.</p>
+                </div>
+                <div class="border border-edge bg-surface p-6 hover:border-neon transition-colors">
+                    <div class="w-12 h-12 border border-neon flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-user-graduate text-neon"></i>
+                    </div>
+                    <h3 class="font-mono font-bold text-neon mb-2">JOB_SEEKERS</h3>
+                    <p class="text-muted text-sm">Aiming to create portfolio projects and stand out.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-24 px-6 bg-surface border-t border-b border-edge grid-bg">
+        <div class="max-w-2xl mx-auto text-center">
+            <div class="font-mono text-sm text-muted mb-6">
+                <span class="text-neon">$</span> ./enroll --cohort=03 --price=1950
+            </div>
+            <h2 class="font-mono text-3xl md:text-4xl font-bold mb-6">
+                <span class="text-neon">READY_TO_</span><span class="text-hot">TRANSFORM</span><span class="text-neon">?</span>
+            </h2>
+            <p class="text-muted mb-10 text-lg">
+                Join the next cohort. Become an AI-native PM.
+            </p>
+
+            <a href="https://maven.com/aman-khan/coding-agents-for-product-managers"
+               target="_blank"
+               class="inline-flex items-center gap-3 bg-neon hover:bg-neon/90 text-void px-10 py-4 font-mono text-lg font-bold transition-all duration-200 glow-pulse mb-8">
+                <i class="fa-solid fa-terminal"></i>
+                EXECUTE —— $1,950
+            </a>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-6 text-muted text-sm font-mono">
+                <a href="https://maven.com/expense" target="_blank" class="hover:text-neon underline underline-offset-4">
+                    <i class="fa-solid fa-building-columns"></i> employer_reimbursement
+                </a>
+                <span class="hidden sm:inline text-edge">|</span>
+                <a href="https://maven.com/aman-khan/coding-agents-for-product-managers/sales" target="_blank" class="hover:text-neon underline underline-offset-4">
+                    <i class="fa-solid fa-users"></i> bulk_purchase
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 border-t border-edge">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3 font-mono text-sm">
+                <div class="w-8 h-8 border border-neon flex items-center justify-center text-neon text-xs">C4</div>
+                <span class="text-muted">cursor_for_pms v3.0</span>
+            </div>
+            <div class="flex items-center gap-6 text-muted text-sm font-mono">
+                <a href="https://maven.com/aman-khan/coding-agents-for-product-managers#faqs" target="_blank" class="hover:text-neon">FAQ</a>
+                <a href="https://maven.com/terms" target="_blank" class="hover:text-neon">TERMS</a>
+                <a href="https://maven.com/privacy" target="_blank" class="hover:text-neon">PRIVACY</a>
+            </div>
+            <p class="text-muted text-sm font-mono">© 2026 CURSOR_FOR_PMS</p>
+        </div>
+    </footer>
+
+    <!-- Style Switcher -->
+    <div id="style-switcher" class="fixed bottom-6 right-6 z-[9999]">
+        <button id="switcher-toggle" class="w-12 h-12 bg-neon text-void rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center font-mono font-bold">
+            <i class="fa-solid fa-palette"></i>
+        </button>
+        <div id="switcher-menu" class="hidden absolute bottom-16 right-0 bg-surface border border-edge rounded-lg shadow-xl p-4 min-w-[200px]">
+            <p class="text-xs font-mono text-muted uppercase tracking-wider mb-3">SWITCH_THEME</p>
+            <div class="space-y-2">
+                <a href="default.html" class="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-edge text-muted text-sm transition-colors font-mono">
+                    <span class="w-4 h-4 rounded-full bg-[#c9553d]"></span>
+                    Default
+                </a>
+                <a href="notion.html" class="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-edge text-muted text-sm transition-colors font-mono">
+                    <span class="w-4 h-4 rounded-full bg-[#000000] border border-edge"></span>
+                    Notion
+                </a>
+                <a href="zara.html" class="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-edge text-muted text-sm transition-colors font-mono">
+                    <span class="w-4 h-4 rounded-full bg-[#EB4C4C]"></span>
+                    Zara
+                </a>
+                <a href="neural.html" class="flex items-center gap-3 px-3 py-2 rounded-md bg-neon/20 text-neon font-bold text-sm font-mono">
+                    <span class="w-4 h-4 rounded-full bg-[#00ff88]"></span>
+                    Hacker
+                    <i class="fa-solid fa-check ml-auto"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <script>
+        const toggle = document.getElementById('switcher-toggle');
+        const menu = document.getElementById('switcher-menu');
+        toggle.addEventListener('click', () => menu.classList.toggle('hidden'));
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('#style-switcher')) menu.classList.add('hidden');
+        });
+    </script>
+
+</body>
+</html>

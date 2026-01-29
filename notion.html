@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursor for Product Managers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'notion-blue': '#2383e2',
+                        'notion-blue-hover': '#1a6dba',
+                        'notion-text': '#191919',
+                        'notion-text-secondary': '#787774',
+                        'notion-border': '#e3e2e0',
+                        'notion-bg': '#ffffff',
+                        'notion-bg-gray': '#f7f6f3',
+                        'notion-coral': '#ea7263',
+                        'notion-teal': '#529cca',
+                        'notion-yellow': '#f5c342',
+                        'notion-green': '#4dab9a',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Helvetica', 'Arial', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            background-color: #FFFFFF;
+            color: #191919;
+        }
+
+        /* Subtle fade-in animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in {
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+        .animate-delay-1 { animation-delay: 0.1s; opacity: 0; }
+        .animate-delay-2 { animation-delay: 0.2s; opacity: 0; }
+        .animate-delay-3 { animation-delay: 0.3s; opacity: 0; }
+        .animate-delay-4 { animation-delay: 0.4s; opacity: 0; }
+
+        /* Notion-style section backgrounds */
+        .bg-notion-gray {
+            background-color: #f7f6f3;
+        }
+
+        /* Company logo grayscale */
+        .company-logo {
+            filter: grayscale(100%);
+            opacity: 0.5;
+            transition: all 0.2s ease;
+        }
+        .company-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        /* Profile picture styling - Notion style */
+        .profile-pic-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        .profile-pic {
+            border: 2px solid #FFFFFF;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.2s ease;
+        }
+        .profile-pic-wrapper:hover .profile-pic {
+            transform: scale(1.03);
+        }
+
+        /* Notion-style cards */
+        .notion-card {
+            background: #ffffff;
+            border: 1px solid #e3e2e0;
+            border-radius: 12px;
+            transition: box-shadow 0.2s ease, transform 0.2s ease;
+        }
+        .notion-card:hover {
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+        }
+
+        /* Notion-style buttons */
+        .btn-primary {
+            background-color: #2383e2;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 15px;
+            transition: background-color 0.15s ease;
+        }
+        .btn-primary:hover {
+            background-color: #1a6dba;
+        }
+        .btn-secondary {
+            background-color: white;
+            color: #191919;
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: 1px solid #191919;
+            font-weight: 500;
+            font-size: 15px;
+            transition: background-color 0.15s ease;
+        }
+        .btn-secondary:hover {
+            background-color: #f7f6f3;
+        }
+
+        /* Arrow link style */
+        .arrow-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #2383e2;
+            font-weight: 500;
+            transition: gap 0.15s ease;
+        }
+        .arrow-link:hover {
+            gap: 10px;
+        }
+    </style>
+</head>
+<body class="bg-white text-notion-text antialiased">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white border-b border-notion-border">
+        <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2.5">
+                <img src="assets/cursorforpms.webp" alt="Cursor for PMs" class="h-9 w-9 rounded-lg object-cover">
+                <span class="text-lg font-semibold text-notion-text">Cursor for PMs</span>
+            </a>
+            <div class="flex items-center gap-3">
+                <a href="https://maven.com/aman-khan/coding-agents-for-product-managers#faqs"
+                   target="_blank"
+                   class="text-notion-text-secondary hover:text-notion-text text-sm font-medium transition-colors hidden sm:block">
+                    FAQ
+                </a>
+                <a href="https://maven.com/aman-khan/coding-agents-for-product-managers"
+                   target="_blank"
+                   class="btn-primary flex items-center gap-2">
+                    Get started
+                    <span class="text-white/80">→</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-16 pb-20 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <!-- Notion-style character illustration placeholder -->
+            <div class="flex justify-center items-center gap-2 mb-8 animate-fade-in">
+                <div class="w-14 h-14 rounded-full bg-notion-coral flex items-center justify-center">
+                    <span class="text-2xl">💡</span>
+                </div>
+                <div class="w-14 h-14 rounded-full bg-notion-teal flex items-center justify-center">
+                    <span class="text-2xl">🚀</span>
+                </div>
+                <div class="w-14 h-14 rounded-full bg-notion-yellow flex items-center justify-center">
+                    <span class="text-2xl">⚡</span>
+                </div>
+            </div>
+
+            <h1 class="text-5xl md:text-6xl font-bold leading-[1.1] tracking-tight mb-6 animate-fade-in animate-delay-1 text-notion-text">
+                Build products.<br>Not just specs.
+            </h1>
+            <p class="text-xl md:text-[22px] leading-relaxed text-notion-text-secondary max-w-2xl mx-auto mb-10 animate-fade-in animate-delay-2">
+                Go from "I use ChatGPT to ask questions" to building real products—in two weeks. A live course for Product Managers and UX Designers.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 animate-fade-in animate-delay-3">
+                <a href="https://maven.com/aman-khan/coding-agents-for-product-managers"
+                   target="_blank"
+                   class="btn-primary text-base px-6 py-3 flex items-center gap-2">
+                    Join waitlist — $1,950
+                    <span>→</span>
+                </a>
+                <a href="#free-resources"
+                   class="btn-secondary text-base px-6 py-3">
+                    Watch free recordings
+                </a>
+            </div>
+
+            <!-- Social proof -->
+            <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-notion-text-secondary animate-fade-in animate-delay-4">
+                <div class="flex items-center gap-1.5">
+                    <span class="text-notion-yellow">★★★★★</span>
+                    <span>5.0 rating on Maven</span>
+                </div>
+                <span class="hidden sm:inline text-notion-border">·</span>
+                <span>2-week live cohort</span>
+                <span class="hidden sm:inline text-notion-border">·</span>
+                <span>11 sessions</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trusted by bar -->
+    <section class="py-6 border-y border-notion-border bg-notion-bg-gray">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
+                <span class="text-notion-text-secondary text-sm">Students from</span>
+                <img src="assets/meta.svg" alt="Meta" class="h-5 company-logo object-contain">
+                <img src="assets/adobe.svg" alt="Adobe" class="h-5 company-logo object-contain">
+                <img src="assets/spotify.webp" alt="Spotify" class="h-5 company-logo object-contain">
+                <img src="assets/apple.svg" alt="Apple" class="h-5 company-logo object-contain">
+            </div>
+        </div>
+    </section>
+
+    <!-- What You'll Learn -->
+    <section class="py-20 px-6">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-notion-text">
+                What you'll learn
+            </h2>
+            <p class="text-notion-text-secondary text-center text-lg mb-12 max-w-2xl mx-auto">
+                Go from zero to shipping real features with AI coding agents.
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-5">
+                <!-- Card 1 -->
+                <div class="notion-card p-6">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-notion-coral/20 flex items-center justify-center flex-shrink-0">
+                            <span class="text-lg">💡</span>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-2 text-notion-text">
+                                Brainstorm features
+                            </h3>
+                            <p class="text-notion-text-secondary leading-relaxed text-[15px]">
+                                Setup coding agents on real codebases. Transform them into senior tech leads that understand your product.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="notion-card p-6">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-notion-teal/20 flex items-center justify-center flex-shrink-0">
+                            <span class="text-lg">🧱</span>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-2 text-notion-text">
+                                Build prototypes
+                            </h3>
+                            <p class="text-notion-text-secondary leading-relaxed text-[15px]">
+                                Use agents as your UX designer and build many prototypes at once to make better tradeoffs quickly.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="notion-card p-6">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-notion-yellow/20 flex items-center justify-center flex-shrink-0">
+                            <span class="text-lg">✨</span>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-2 text-notion-text">
+                                Master Cursor
+                            </h3>
+                            <p class="text-notion-text-secondary leading-relaxed text-[15px]">
+                                Manage agent memory, MCP connectors, and developer tools to dramatically improve output quality.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="notion-card p-6">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-notion-green/20 flex items-center justify-center flex-shrink-0">
+                            <span class="text-lg">🤖</span>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-2 text-notion-text">
+                                AI everywhere
+                            </h3>
+                            <p class="text-notion-text-secondary leading-relaxed text-[15px]">
+                                Analyze customer data, write docs, perform QA—all in context of your application.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instructors -->
+    <section class="py-20 px-6 bg-notion-bg-gray">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-notion-text">
+                Your instructors
+            </h2>
+            <p class="text-notion-text-secondary text-center text-lg mb-12">
+                Learn from PMs who've built AI products at scale.
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Aman -->
+                <div class="notion-card p-6">
+                    <div class="flex items-start gap-4 mb-4">
+                        <img src="assets/aman.webp" alt="Aman Khan" class="profile-pic w-16 h-16 rounded-full object-cover">
+                        <div>
+                            <h3 class="text-lg font-semibold text-notion-text">Aman Khan</h3>
+                            <p class="text-notion-text-secondary text-sm">Head of Product @ Arize AI</p>
+                        </div>
+                    </div>
+                    <p class="text-notion-text-secondary text-[15px] leading-relaxed mb-4">
+                        Featured on Lenny's List. Built AI products used by Uber, Duolingo, and Instacart. Teaches on deeplearning.ai.
+                    </p>
+                    <div class="flex items-center gap-4 mb-4">
+                        <img src="assets/spotify.webp" alt="Spotify" class="h-4 company-logo object-contain">
+                        <img src="assets/cruise.svg" alt="Cruise" class="h-4 company-logo object-contain">
+                        <img src="assets/apple.svg" alt="Apple" class="h-4 company-logo object-contain">
+                        <img src="assets/UCB.svg" alt="UC Berkeley" class="h-5 company-logo object-contain">
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <a href="https://www.linkedin.com/in/amanberkeley" target="_blank" class="text-notion-text-secondary hover:text-notion-blue transition-colors">
+                            <i class="fa-brands fa-linkedin"></i>
+                        </a>
+                        <a href="https://x.com/_amankhan" target="_blank" class="text-notion-text-secondary hover:text-notion-blue transition-colors">
+                            <i class="fa-brands fa-x-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Eric -->
+                <div class="notion-card p-6">
+                    <div class="flex items-start gap-4 mb-4">
+                        <img src="assets/eric.webp" alt="Eric Xiao" class="profile-pic w-16 h-16 rounded-full object-cover">
+                        <div>
+                            <h3 class="text-lg font-semibold text-notion-text">Eric Xiao</h3>
+                            <p class="text-notion-text-secondary text-sm">Founder & AI PM</p>
+                        </div>
+                    </div>
+                    <p class="text-notion-text-secondary text-[15px] leading-relaxed mb-4">
+                        Building an AI app with 100k+ downloads. Holds a patent for an AI shopping assistant. 10+ years in product.
+                    </p>
+                    <div class="flex items-center gap-4 mb-4">
+                        <img src="assets/meta.svg" alt="Meta" class="h-4 company-logo object-contain">
+                        <img src="assets/adobe.svg" alt="Adobe" class="h-4 company-logo object-contain">
+                        <img src="assets/arize.svg" alt="Arize AI" class="h-4 company-logo object-contain">
+                        <img src="assets/fountain.svg" alt="Fountain" class="h-4 company-logo object-contain">
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <a href="https://www.linkedin.com/in/ericxiao/" target="_blank" class="text-notion-text-secondary hover:text-notion-blue transition-colors">
+                            <i class="fa-brands fa-linkedin"></i>
+                        </a>
+                        <a href="https://x.com/exiao3" target="_blank" class="text-notion-text-secondary hover:text-notion-blue transition-colors">
+                            <i class="fa-brands fa-x-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What's Included -->
+    <section class="py-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-notion-text">
+                What's included
+            </h2>
+            <p class="text-notion-text-secondary text-center text-lg mb-12">
+                Everything you need to succeed.
+            </p>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="flex items-start gap-3 p-4">
+                    <span class="text-xl">📹</span>
+                    <div>
+                        <p class="font-medium text-notion-text">11 live sessions</p>
+                        <p class="text-notion-text-secondary text-sm">~5 hours per week over 2 weeks</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3 p-4">
+                    <span class="text-xl">👥</span>
+                    <div>
+                        <p class="font-medium text-notion-text">Engineer access</p>
+                        <p class="text-notion-text-secondary text-sm">Never feel blocked by technical skills</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3 p-4">
+                    <span class="text-xl">♾️</span>
+                    <div>
+                        <p class="font-medium text-notion-text">Lifetime recordings</p>
+                        <p class="text-notion-text-secondary text-sm">Revisit content whenever you need</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3 p-4">
+                    <span class="text-xl">💬</span>
+                    <div>
+                        <p class="font-medium text-notion-text">Slack community</p>
+                        <p class="text-notion-text-secondary text-sm">Direct access to instructors</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3 p-4">
+                    <span class="text-xl">📜</span>
+                    <div>
+                        <p class="font-medium text-notion-text">Certificate</p>
+                        <p class="text-notion-text-secondary text-sm">Share on LinkedIn</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3 p-4">
+                    <span class="text-xl">✓</span>
+                    <div>
+                        <p class="font-medium text-notion-text">Satisfaction guarantee</p>
+                        <p class="text-notion-text-secondary text-sm">Full refund until halfway point</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="py-20 px-6 bg-notion-bg-gray">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-notion-text">
+                Trusted by PMs who ship.
+            </h2>
+            <p class="text-notion-text-secondary text-center text-lg mb-12">
+                Hear from past students.
+            </p>
+
+            <div class="grid md:grid-cols-3 gap-5">
+                <!-- Review 1 -->
+                <div class="notion-card p-6">
+                    <p class="text-notion-text leading-relaxed mb-6 text-[15px]">
+                        "This course is a game changer. As a PM I've had a lot of FOMO recently that I'm falling behind with AI tools. This gave me exactly what I needed to catch up and get ahead."
+                    </p>
+                    <footer class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-notion-coral flex items-center justify-center">
+                            <span class="text-white font-medium text-sm">B</span>
+                        </div>
+                        <div>
+                            <p class="font-medium text-notion-text text-sm">Blake</p>
+                            <p class="text-notion-text-secondary text-xs">Product Lead @ AllTrails</p>
+                        </div>
+                    </footer>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="notion-card p-6">
+                    <p class="text-notion-text leading-relaxed mb-6 text-[15px]">
+                        "I'm a designer with no technical background, and even though this class is designed for PMs, it was incredibly valuable. I can now build working prototypes myself."
+                    </p>
+                    <footer class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-notion-teal flex items-center justify-center">
+                            <span class="text-white font-medium text-sm">J</span>
+                        </div>
+                        <div>
+                            <p class="font-medium text-notion-text text-sm">Jerry</p>
+                            <p class="text-notion-text-secondary text-xs">UX Lead @ Gartner</p>
+                        </div>
+                    </footer>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="notion-card p-6">
+                    <p class="text-notion-text leading-relaxed mb-6 text-[15px]">
+                        "Very concrete and valuable course! Aman and Eric consistently went above and beyond, offering additional office hours and troubleshooting help."
+                    </p>
+                    <footer class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-notion-yellow flex items-center justify-center">
+                            <span class="text-white font-medium text-sm">M</span>
+                        </div>
+                        <div>
+                            <p class="font-medium text-notion-text text-sm">Mel</p>
+                            <p class="text-notion-text-secondary text-xs">CX Lead @ Dragonfly</p>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who This Is For -->
+    <section class="py-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-notion-text">
+                Who this is for
+            </h2>
+            <p class="text-notion-text-secondary text-center text-lg mb-12">
+                This course is perfect if you are a...
+            </p>
+
+            <div class="grid md:grid-cols-3 gap-5">
+                <div class="notion-card p-6 text-center">
+                    <div class="w-12 h-12 rounded-full bg-notion-coral/20 flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">📊</span>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2 text-notion-text">Product Manager</h3>
+                    <p class="text-notion-text-secondary text-sm">Looking for best practices on how AI is transforming product development.</p>
+                </div>
+                <div class="notion-card p-6 text-center">
+                    <div class="w-12 h-12 rounded-full bg-notion-teal/20 flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">🎨</span>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2 text-notion-text">UX Designer</h3>
+                    <p class="text-notion-text-secondary text-sm">Who wants to bring ideas to life and build real applications.</p>
+                </div>
+                <div class="notion-card p-6 text-center">
+                    <div class="w-12 h-12 rounded-full bg-notion-yellow/20 flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">🎯</span>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2 text-notion-text">Job Seeker</h3>
+                    <p class="text-notion-text-secondary text-sm">Aiming to create portfolio projects and stand out in the market.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Free Resources -->
+    <section id="free-resources" class="py-20 px-6 bg-notion-bg-gray">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-notion-text">
+                Try before you buy
+            </h2>
+            <p class="text-notion-text-secondary text-center text-lg mb-12">
+                Watch our free recordings to get a taste of the course.
+            </p>
+
+            <div class="grid md:grid-cols-3 gap-5">
+                <!-- Recording 1 -->
+                <a href="https://maven.com/p/caee21/cursor-for-product-managers" target="_blank" class="group notion-card overflow-hidden">
+                    <div class="aspect-video bg-notion-bg-gray relative overflow-hidden">
+                        <img src="assets/ship10xfaster.webp" alt="Cursor for Product Managers" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-semibold mb-2 text-notion-text group-hover:text-notion-blue transition-colors">
+                            Cursor for Product Managers
+                        </h3>
+                        <span class="arrow-link text-sm">
+                            Watch recording
+                            <span>→</span>
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Recording 2 -->
+                <a href="https://maven.com/p/69721a/how-to-ship-finished-features-from-single-line-prompts" target="_blank" class="group notion-card overflow-hidden">
+                    <div class="aspect-video bg-notion-bg-gray relative overflow-hidden">
+                        <img src="assets/shipfinishedfeatures.webp" alt="Ship Finished Features" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-semibold mb-2 text-notion-text group-hover:text-notion-blue transition-colors">
+                            How to ship finished features
+                        </h3>
+                        <span class="arrow-link text-sm">
+                            Watch recording
+                            <span>→</span>
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Recording 3 -->
+                <a href="https://maven.com/p/34afdb/ai-systems-for-p-ms-to-ship-10x-faster" target="_blank" class="group notion-card overflow-hidden">
+                    <div class="aspect-video bg-notion-bg-gray relative overflow-hidden">
+                        <img src="assets/ship10xfaster.webp" alt="AI Systems for PMs" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-semibold mb-2 text-notion-text group-hover:text-notion-blue transition-colors">
+                            AI systems to ship 10x faster
+                        </h3>
+                        <span class="arrow-link text-sm">
+                            Watch recording
+                            <span>→</span>
+                        </span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-24 px-6 bg-notion-text">
+        <div class="max-w-2xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">
+                Ready to build?
+            </h2>
+            <p class="text-white/60 mb-10 text-lg">
+                Join the next cohort and start shipping real products.
+            </p>
+
+            <a href="https://maven.com/aman-khan/coding-agents-for-product-managers"
+               target="_blank"
+               class="inline-flex items-center gap-2 bg-white hover:bg-gray-100 text-notion-text px-8 py-4 rounded-lg text-base font-medium transition-colors mb-8">
+                Get started — $1,950
+                <span>→</span>
+            </a>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-6 text-white/50 text-sm">
+                <a href="https://maven.com/expense" target="_blank" class="hover:text-white/80 transition-colors">
+                    Get reimbursed by your employer →
+                </a>
+                <a href="https://maven.com/aman-khan/coding-agents-for-product-managers/sales" target="_blank" class="hover:text-white/80 transition-colors">
+                    Bulk purchases available →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 px-6 border-t border-notion-border bg-white">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-2.5">
+                <img src="assets/cursorforpms.webp" alt="Cursor for PMs" class="h-7 w-7 rounded-lg object-cover">
+                <span class="font-semibold text-notion-text">Cursor for PMs</span>
+            </div>
+            <div class="flex items-center gap-6 text-notion-text-secondary text-sm">
+                <a href="https://maven.com/aman-khan/coding-agents-for-product-managers#faqs" target="_blank" class="hover:text-notion-text transition-colors">
+                    FAQ
+                </a>
+                <a href="https://maven.com/terms" target="_blank" class="hover:text-notion-text transition-colors">
+                    Terms
+                </a>
+                <a href="https://maven.com/privacy" target="_blank" class="hover:text-notion-text transition-colors">
+                    Privacy
+                </a>
+            </div>
+            <p class="text-notion-text-secondary text-sm">&copy; 2026 Cursor for PMs</p>
+        </div>
+    </footer>
+
+    <!-- Style Switcher -->
+    <div id="style-switcher" class="fixed bottom-6 right-6 z-[9999]">
+        <button id="switcher-toggle" class="w-11 h-11 bg-notion-text text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center">
+            <i class="fa-solid fa-palette text-sm"></i>
+        </button>
+        <div id="switcher-menu" class="hidden absolute bottom-14 right-0 bg-white border border-notion-border rounded-xl shadow-xl p-3 min-w-[180px]">
+            <p class="text-xs font-medium text-notion-text-secondary uppercase tracking-wider mb-2 px-2">Theme</p>
+            <div class="space-y-1">
+                <a href="default.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-notion-bg-gray text-notion-text-secondary text-sm transition-colors">
+                    <span class="w-3 h-3 rounded-full bg-[#c9553d]"></span>
+                    Default
+                </a>
+                <a href="notion.html" class="flex items-center gap-3 px-3 py-2 rounded-lg bg-notion-blue/10 text-notion-blue font-medium text-sm">
+                    <span class="w-3 h-3 rounded-full bg-[#2383e2]"></span>
+                    Notion
+                    <i class="fa-solid fa-check ml-auto text-xs"></i>
+                </a>
+                <a href="zara.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-notion-bg-gray text-notion-text-secondary text-sm transition-colors">
+                    <span class="w-3 h-3 rounded-full bg-[#EB4C4C]"></span>
+                    Zara
+                </a>
+                <a href="neural.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-notion-bg-gray text-notion-text-secondary text-sm transition-colors">
+                    <span class="w-3 h-3 rounded-full bg-[#00ff88]"></span>
+                    Hacker
+                </a>
+            </div>
+        </div>
+    </div>
+    <script>
+        const toggle = document.getElementById('switcher-toggle');
+        const menu = document.getElementById('switcher-menu');
+        toggle.addEventListener('click', () => menu.classList.toggle('hidden'));
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('#style-switcher')) menu.classList.add('hidden');
+        });
+    </script>
+
+</body>
+</html>
