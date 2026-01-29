@@ -1418,5 +1418,79 @@
         </div>
     </footer>
 
+    <!-- Domain-based branding -->
+    <script>
+        (function() {
+            const isClaudeCode = window.location.hostname === 'claudecodepm.com' ||
+                                 window.location.hostname === 'www.claudecodepm.com' ||
+                                 window.location.search.includes('brand=claude');
+
+            if (isClaudeCode) {
+                // Update page title
+                document.title = 'Claude Code for Product Managers';
+
+                // Simple text replacements
+                const textReplacements = [
+                    ['Cursor for PMs', 'Claude Code for PMs'],
+                    ['Cursor for Product Managers', 'Claude Code for Product Managers'],
+                    ['Become an expert at Cursor', 'Become an expert at Claude Code'],
+                    ['Start using Cursor for every part', 'Start using Claude Code for every part'],
+                    ['built with Cursor', 'built with Claude Code']
+                ];
+
+                // Walk through all text nodes and replace
+                const walker = document.createTreeWalker(
+                    document.body,
+                    NodeFilter.SHOW_TEXT,
+                    null,
+                    false
+                );
+
+                const textNodes = [];
+                while (walker.nextNode()) {
+                    textNodes.push(walker.currentNode);
+                }
+
+                textNodes.forEach(node => {
+                    let text = node.textContent;
+                    let changed = false;
+                    textReplacements.forEach(([from, to]) => {
+                        if (text.includes(from)) {
+                            text = text.split(from).join(to);
+                            changed = true;
+                        }
+                    });
+                    if (changed) {
+                        node.textContent = text;
+                    }
+                });
+
+                // Handle the hero title with <br> tag specially
+                const heroTitle = document.querySelector('h1.font-display');
+                if (heroTitle && heroTitle.textContent.includes('Cursor')) {
+                    // Clear and rebuild with safe DOM methods
+                    while (heroTitle.firstChild) {
+                        heroTitle.removeChild(heroTitle.firstChild);
+                    }
+                    heroTitle.appendChild(document.createTextNode('Claude Code for'));
+                    heroTitle.appendChild(document.createElement('br'));
+                    heroTitle.appendChild(document.createTextNode('Product Managers'));
+                }
+
+                // Update icon from arrow-pointer to terminal for Claude Code branding
+                document.querySelectorAll('.fa-arrow-pointer').forEach(icon => {
+                    icon.classList.remove('fa-arrow-pointer');
+                    icon.classList.add('fa-terminal');
+                });
+
+                // Update favicon to terminal emoji
+                const favicon = document.querySelector('link[rel="icon"]');
+                if (favicon) {
+                    favicon.href = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>";
+                }
+            }
+        })();
+    </script>
+
 </body>
 </html>
