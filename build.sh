@@ -3,9 +3,9 @@
 # Injects environment variables into HTML files
 
 # Default values (override with Render environment variables)
-SITE_URL="${SITE_URL:-https://cursorpm.com}"
-OG_IMAGE="${OG_IMAGE:-og-cursor.png}"
-OG_TITLE="${OG_TITLE:-Cursor for Product Managers}"
+SITE_URL="${SITE_URL:-https://claudecodepm.com}"
+OG_IMAGE="${OG_IMAGE:-og-claude.png}"
+OG_TITLE="${OG_TITLE:-Claude Code and Codex for Product Managers}"
 
 FAVICON_TYPE="${FAVICON:-cursor}"
 echo "Building with SITE_URL=$SITE_URL, OG_IMAGE=$OG_IMAGE, OG_TITLE=$OG_TITLE, FAVICON=$FAVICON_TYPE"
