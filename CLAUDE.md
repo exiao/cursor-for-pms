@@ -177,7 +177,12 @@ The site is deployed as **two separate static sites** on Render.com, each with d
 | Cursor domain | `https://cursorpm.com` | `og-claude.png` | `Claude Code and Codex for Product Managers` |
 | Claude Code | `https://claudecodepm.com` | `og-claude.png` | `Claude Code and Codex for Product Managers` |
 
-Both domains serve the same Claude Code course page. The favicon is always `favicon-terminal.svg`.
+Both domains serve the same Claude Code course page. The favicon is always `favicon-terminal.svg`. Only `SITE_URL` is configurable; `build.sh` fixes the shared title and image even if Render still has legacy `OG_TITLE` or `OG_IMAGE` environment variables.
+
+Both services auto-deploy commits to `main`. The Cursor service also has automatic PR previews enabled; pushing a PR branch can publish a Render preview. Do not push when preview publication is prohibited.
+
+### Verification
+Run `python3 test-site.py` (Python 3 and Node required). It builds both domains in temporary directories using the legacy Render branding values, validates metadata and local asset paths, checks inline JavaScript syntax, and exercises the lesson rollover before, at, and after the deadline, including an already-open page.
 
 ### How It Works
 1. `build.sh` runs at deploy time
