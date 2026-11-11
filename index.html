@@ -122,6 +122,11 @@
         ::selection { background: #c9553d; color: #f7f5f0; }
         a:focus-visible, button:focus-visible { outline: 2px solid #c9553d; outline-offset: 3px; }
         .reviews-cols { column-gap: 1.5rem; }
+        .hero-term { font-family: "JetBrains Mono", ui-monospace, monospace; }
+        .hero-term .ln { white-space: pre-wrap; }
+        .hero-term .caret { display: inline-block; width: 0.55em; height: 1.05em; background: #c9553d; vertical-align: -0.15em; animation: blink 1s steps(1) infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+        @media (prefers-reduced-motion: reduce) { .hero-term .caret { animation: none; } }
         .reviews-cols > * { break-inside: avoid; margin-bottom: 1.5rem; }
 
     </style>
@@ -135,10 +140,10 @@
                 <div class="h-10 w-10 rounded-lg bg-ink flex items-center justify-center">
                     <i class="fa-solid fa-terminal text-cream text-lg"></i>
                 </div>
-                <span class="font-display text-xl font-semibold tracking-tight">Claude Code for PMs</span>
+                <span class="font-display text-lg sm:text-xl font-semibold tracking-tight">Claude Code for PMs</span>
             </a>
             <a href="https://maven.com/aman-khan/claude-code-for-product-managers" target="_blank" rel="noopener"
-               class="bg-terracotta hover:bg-terracotta-dark text-white px-4 py-2.5 md:px-5 rounded-sm font-body text-sm font-medium transition-all duration-200 hover:shadow-lg flex items-center gap-2">
+               class="bg-terracotta hover:bg-terracotta-dark text-white px-4 py-2.5 md:px-5 rounded-sm font-body text-sm font-medium whitespace-nowrap transition-all duration-200 hover:shadow-lg flex items-center gap-2">
                 Enroll on Maven
                 <i class="fa-solid fa-arrow-right text-xs"></i>
             </a>
@@ -148,34 +153,37 @@
     <!-- Hero Section -->
     <section class="pt-20 pb-24 px-6" id="hero">
 
-        <div class="max-w-3xl mx-auto text-center">
-            <p class="text-sage font-medium text-sm tracking-widest uppercase mb-6 animate-fade-in flex items-center justify-center gap-2">
-                <i class="fa-solid fa-calendar-days"></i>
-                Live cohort or self-paced on Maven
-            </p>
-            <h1 class="font-display text-5xl md:text-6xl font-medium leading-tight mb-6 animate-fade-in animate-delay-1" style="text-wrap: balance">
-                Claude Code and Codex for Product Managers
-            </h1>
-            <p class="text-xl md:text-2xl leading-relaxed text-ink/70 mb-10 animate-fade-in animate-delay-2" style="text-wrap: balance">
-                Build a factory for your product work. Learn to hand real PM work to AI agents, and get results you'd ship.
-            </p>
-
-            <!-- Hero CTA -->
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in animate-delay-3">
-                <a href="https://maven.com/aman-khan/claude-code-for-product-managers" target="_blank" rel="noopener"
-                   class="inline-flex items-center gap-2 bg-terracotta hover:bg-terracotta-dark text-white px-8 py-4 rounded-sm font-body text-lg font-medium transition-all duration-200 hover:shadow-xl">
-                    Enroll on Maven
-                    <i class="fa-solid fa-arrow-right text-sm"></i>
-                </a>
-                <a href="#lessons" class="inline-flex items-center gap-2 text-ink/70 hover:text-terracotta px-4 py-4 font-body text-lg transition-colors">
-                    <i class="fa-solid fa-circle-play"></i>
-                    Watch a free lesson
-                </a>
+        <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+            <div class="text-center lg:text-left">
+                <p class="text-sage font-medium text-sm tracking-widest uppercase mb-6 animate-fade-in flex items-center justify-center lg:justify-start gap-2">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    Live cohort or self-paced on Maven
+                </p>
+                <h1 class="font-display text-5xl md:text-6xl font-medium leading-tight mb-6 animate-fade-in animate-delay-1" style="text-wrap: balance">
+                    Claude Code and Codex for Product Managers
+                </h1>
+                <p class="text-xl leading-relaxed text-ink/70 mb-10 animate-fade-in animate-delay-2">
+                    Build a factory for your product work. Learn to hand real PM work to AI agents, and get results you'd ship.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-4 animate-fade-in animate-delay-3">
+                    <a href="https://maven.com/aman-khan/claude-code-for-product-managers" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-terracotta hover:bg-terracotta-dark text-white px-8 py-4 rounded-sm font-body text-lg font-medium transition-all duration-200 hover:shadow-xl">
+                        Enroll on Maven <i class="fa-solid fa-arrow-right text-sm"></i>
+                    </a>
+                    <a href="#lessons" class="inline-flex items-center gap-2 text-ink/70 hover:text-terracotta px-4 py-4 font-body text-lg transition-colors">
+                        <i class="fa-solid fa-circle-play"></i> Watch a free lesson
+                    </a>
+                </div>
+                <p class="text-ink/60 text-sm mt-8 animate-fade-in animate-delay-4">
+                    <i class="fa-solid fa-star text-terracotta"></i> 4.9 from 40 ratings · 6 live build days · Lifetime access
+                </p>
             </div>
-
-            <p class="text-ink/60 text-sm text-center mt-8 animate-fade-in animate-delay-4">
-                <i class="fa-solid fa-star text-terracotta"></i> 4.9 from 40 ratings · 6 live build days · Lifetime access · Slack community
-            </p>
+            <div class="hero-term bg-ink rounded-lg shadow-2xl overflow-hidden animate-fade-in animate-delay-2" aria-label="Example: Claude Code turns support tickets into a feature brief">
+                <div class="flex items-center gap-2 px-4 py-3 border-b border-cream/10">
+                    <span class="w-3 h-3 rounded-full bg-cream/20"></span><span class="w-3 h-3 rounded-full bg-cream/20"></span><span class="w-3 h-3 rounded-full bg-cream/20"></span>
+                    <span class="ml-3 text-cream/40 text-xs">claude ~/product</span>
+                </div>
+                <div id="hero-term-body" class="p-4 sm:p-5 text-[11px] sm:text-[13px] leading-5 sm:leading-6 text-cream/80 h-[300px] sm:h-[340px] overflow-hidden"></div>
+            </div>
         </div>
 
     </section>
@@ -1374,12 +1382,32 @@
                     </footer>
                 </blockquote>
                 <blockquote class="bg-white border border-cream-dark rounded-sm p-7">
+                    <div class="leading-relaxed text-ink/80"><p class="mb-3 last:mb-0">This course is a game changer. As a PM I&#x27;ve had a lot of FOMO recently that I&#x27;m falling behind with everything developing so quickly with AI. This course totally demystifies a lot of the intimidating tooling and jargon, and you walk away with a ton of super valuable skills and tools. I specifically learned how to build and launch my own side projects, as well as plug Cursor into my tools at work to make myself a much higher leverage PM in my day to day work. Highly reccomend!</p></div>
+                    <footer class="flex items-center gap-3 mt-6">
+                        <img src="assets/reviews/blake.webp" alt="" class="w-11 h-11 rounded-full object-cover" loading="lazy" width="44" height="44">
+                        <div>
+                            <p class="font-medium">Blake</p>
+                            <p class="text-ink/60 text-sm">Product Lead @ AllTrails</p>
+                        </div>
+                    </footer>
+                </blockquote>
+                <blockquote class="bg-white border border-cream-dark rounded-sm p-7">
                     <div class="leading-relaxed text-ink/80"><p class="mb-3 last:mb-0">Whether you&#x27;re looking to go from 0-&gt;1 or 1-&gt;10, this course is extremely useful for Claude Code skills in your day-to-day or building something! Great course and Eric and Aman are very good instructors.</p><p class="mb-3 last:mb-0">Despite that Claude Code or other AI tools are evolving fast, this helps set the stage for your own learning and adoption!</p></div>
                     <footer class="flex items-center gap-3 mt-6">
                         <img src="assets/reviews/shilpa.webp" alt="" class="w-11 h-11 rounded-full object-cover" loading="lazy" width="44" height="44">
                         <div>
                             <p class="font-medium">Shilpa</p>
                             <p class="text-ink/60 text-sm">Principal PM @ Independent</p>
+                        </div>
+                    </footer>
+                </blockquote>
+                <blockquote class="bg-white border border-cream-dark rounded-sm p-7">
+                    <div class="leading-relaxed text-ink/80"><p class="mb-3 last:mb-0">I’m a designer with no technical background, and even though this class is designed for PMs, it was incredibly valuable and practical. Eric, Aman, and Steven are rockstars -- answered everything from beginner to advanced questions, and helped connect technical skills to real product and design work. Highly recommend for anyone who wants to genuinely understand Cursor, work more effectively with technical teams, and expand how you think about your own capabilities, this class is absolutely worth it.</p></div>
+                    <footer class="flex items-center gap-3 mt-6">
+                        <img src="assets/reviews/jerry.webp" alt="" class="w-11 h-11 rounded-full object-cover" loading="lazy" width="44" height="44">
+                        <div>
+                            <p class="font-medium">Jerry</p>
+                            <p class="text-ink/60 text-sm">UX Lead Manager @ Gartner</p>
                         </div>
                     </footer>
                 </blockquote>
@@ -1613,6 +1641,30 @@
             card.querySelector('[data-live-label]').textContent = card.querySelector('[data-live-label]').dataset.liveLabel;
             b.remove();
         });
+    </script>
+    <script>
+    (() => {
+        const lines = [["p", "> Turn last week's 40 support tickets into a feature brief"], ["d", "Reading tickets.csv and docs/roadmap.md"], ["d", "Grouping by problem: 3 themes found"], ["o", "  1. Export fails on large reports  (17 tickets)"], ["o", "  2. Can't find sharing settings      (14 tickets)"], ["o", "  3. Slow dashboard on mobile        (9 tickets)"], ["d", "Checking the code for where export breaks"], ["o", "  Found it: reports over 10MB time out in export.ts"], ["d", "Writing brief.md with quotes, size, and a fix plan"], ["d", "Building a clickable prototype of the new share menu"], ["s", "Done. brief.md and a prototype link are ready for review."]];
+        const body = document.getElementById('hero-term-body');
+        const color = { p: 'text-cream', d: 'text-cream/50', o: 'text-cream/80', s: 'text-sage' };
+        const prefix = { p: '', d: '● ', o: '', s: '✓ ' };
+        const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const mk = (k, t) => { const el = document.createElement('div'); el.className = 'ln ' + color[k]; el.textContent = prefix[k] + t; return el; };
+        if (reduce) { lines.forEach(([k, t]) => body.appendChild(mk(k, t))); return; }
+        const caret = document.createElement('span'); caret.className = 'caret';
+        let i = 0;
+        const next = () => {
+            if (i >= lines.length) { setTimeout(() => { body.textContent = ''; i = 0; next(); }, 6000); return; }
+            const [k, t] = lines[i++];
+            if (k === 'p') {
+                const el = mk('p', ''); body.appendChild(el); body.scrollTop = body.scrollHeight; el.appendChild(caret);
+                let c = 0;
+                const type = () => { el.firstChild && el.firstChild.nodeType === 3 ? el.firstChild.textContent = t.slice(0, ++c) : el.insertBefore(document.createTextNode(t.slice(0, ++c)), caret); c < t.length ? setTimeout(type, 28) : setTimeout(() => { caret.remove(); next(); }, 500); };
+                type();
+            } else { body.appendChild(mk(k, t)); body.scrollTop = body.scrollHeight; setTimeout(next, k === 'd' ? 650 : 260); }
+        };
+        new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { o.disconnect(); setTimeout(next, 700); } }).observe(body);
+    })();
     </script>
 </body>
 </html>
