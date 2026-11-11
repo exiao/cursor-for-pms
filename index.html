@@ -3,20 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cursor for Product Managers</title>
+    <title>Claude Code and Codex for Product Managers</title>
 
     <!-- Open Graph - configured via build.sh with SITE_URL, OG_IMAGE, OG_TITLE env vars -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="__SITE_URL__">
     <meta property="og:title" content="__OG_TITLE__">
-    <meta property="og:description" content="Use coding agents for every part of your work">
+    <meta property="og:description" content="How to build a factory for product management work">
     <meta property="og:image" content="__SITE_URL__/assets/__OG_IMAGE__">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="__OG_TITLE__">
-    <meta name="twitter:description" content="Use coding agents for every part of your work">
+    <meta name="twitter:description" content="How to build a factory for product management work">
     <meta name="twitter:image" content="__SITE_URL__/assets/__OG_IMAGE__">
-    <!-- Favicon - build.sh replaces with favicon-terminal.svg when FAVICON=terminal -->
-    <link rel="icon" type="image/svg+xml" href="assets/favicon-cursor.svg">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon-terminal.svg">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -120,6 +119,16 @@
         .profile-pic-wrapper:hover .profile-pic {
             transform: scale(1.02);
         }
+        ::selection { background: #c9553d; color: #f7f5f0; }
+        a:focus-visible, button:focus-visible { outline: 2px solid #c9553d; outline-offset: 3px; }
+        .reviews-cols { column-gap: 1.5rem; }
+        .hero-term { font-family: "JetBrains Mono", ui-monospace, monospace; }
+        .hero-term .ln { white-space: pre-wrap; }
+        .hero-term .caret { display: inline-block; width: 0.55em; height: 1.05em; background: #c9553d; vertical-align: -0.15em; animation: blink 1s steps(1) infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+        @media (prefers-reduced-motion: reduce) { .hero-term .caret { animation: none; } }
+        .reviews-cols > * { break-inside: avoid; margin-bottom: 1.5rem; }
+
     </style>
 </head>
 <body class="bg-cream text-ink antialiased">
@@ -127,49 +136,52 @@
     <!-- Header -->
     <header class="sticky top-0 z-50 bg-cream/95 backdrop-blur-sm border-b border-cream-dark">
         <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-            <a href="#" class="flex items-center gap-3">
+            <a href="#" class="flex items-center gap-2 sm:gap-3 min-w-0">
                 <div class="h-10 w-10 rounded-lg bg-ink flex items-center justify-center">
-                    <i class="fa-solid fa-arrow-pointer text-cream text-lg"></i>
+                    <i class="fa-solid fa-terminal text-cream text-lg"></i>
                 </div>
-                <span class="font-display text-xl font-semibold tracking-tight">Cursor for PMs</span>
+                <span class="font-display text-lg sm:text-xl font-semibold tracking-tight whitespace-nowrap">Claude Code for PMs</span>
             </a>
-            <a href="mailto:amanaiproduct@gmail.com?subject=Schedule%20a%20Workshop"
-               class="bg-terracotta hover:bg-terracotta-dark text-white p-2.5 md:px-5 md:py-2.5 rounded-sm font-body text-sm font-medium transition-all duration-200 hover:shadow-lg flex items-center gap-2">
-                <i class="fa-solid fa-envelope"></i>
-                <span class="hidden md:inline">Schedule a Workshop</span>
+            <a href="https://maven.com/aman-khan/claude-code-for-product-managers" target="_blank" rel="noopener"
+               class="bg-terracotta hover:bg-terracotta-dark text-white px-3 py-2.5 sm:px-4 md:px-5 rounded-sm font-body text-sm font-medium whitespace-nowrap transition-all duration-200 hover:shadow-lg flex items-center gap-2">
+                Enroll<span class="hidden sm:inline"> on Maven</span>
+                <i class="fa-solid fa-arrow-right text-xs"></i>
             </a>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="pt-20 pb-24 px-6">
-        <div class="max-w-3xl mx-auto text-center">
-            <p class="text-sage font-medium text-sm tracking-widest uppercase mb-6 animate-fade-in flex items-center justify-center gap-2">
-                <i class="fa-solid fa-calendar-days"></i>
-                A 2-Week Live Course
-            </p>
-            <h1 class="font-display text-5xl md:text-6xl lg:text-7xl font-medium leading-tight mb-6 animate-fade-in animate-delay-1">
-                Cursor for<br>Product Managers
-            </h1>
-            <p class="text-xl md:text-2xl leading-relaxed text-ink/70 mb-10 animate-fade-in animate-delay-2">
-                Become an AI-native PM and use coding agents<br class="hidden md:block">
-                for every part of your work.
-            </p>
+    <section class="pt-20 pb-24 px-6" id="hero">
 
-            <!-- Hero CTA -->
-            <div class="flex items-center justify-center animate-fade-in animate-delay-3">
-                <a href="mailto:amanaiproduct@gmail.com?subject=Schedule%20a%20Workshop"
-                   class="inline-flex items-center gap-2 bg-terracotta hover:bg-terracotta-dark text-white px-8 py-4 rounded-sm font-body text-lg font-medium transition-all duration-200 hover:shadow-xl">
-                    <i class="fa-solid fa-envelope"></i>
-                    Schedule a Workshop
-                </a>
+        <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+            <div class="text-center lg:text-left">
+                <h1 class="font-display text-5xl md:text-6xl font-medium leading-tight mb-6 animate-fade-in animate-delay-1" style="text-wrap: balance">
+                    Claude Code and Codex for Product Managers
+                </h1>
+                <p class="text-xl leading-relaxed text-ink/70 mb-10 animate-fade-in animate-delay-2">
+                    Build a factory for your product work. Learn to hand real PM work to AI agents, and get results you'd ship.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-4 animate-fade-in animate-delay-3">
+                    <a href="https://maven.com/aman-khan/claude-code-for-product-managers" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-terracotta hover:bg-terracotta-dark text-white px-8 py-4 rounded-sm font-body text-lg font-medium transition-all duration-200 hover:shadow-xl">
+                        Enroll on Maven <i class="fa-solid fa-arrow-right text-sm"></i>
+                    </a>
+                    <a href="#lessons" class="inline-flex items-center gap-2 text-ink/70 hover:text-terracotta px-4 py-4 font-body text-lg transition-colors">
+                        <i class="fa-solid fa-circle-play"></i> Watch a free lesson
+                    </a>
+                </div>
+                <p class="text-ink/60 text-sm mt-8 animate-fade-in animate-delay-4">
+                    <i class="fa-solid fa-star text-terracotta"></i> 4.9 from 40 ratings<span class="hidden sm:inline"> · 6 live build days · Lifetime access</span>
+                </p>
             </div>
-
-            <!-- What's Included (compact) -->
-            <p class="text-ink/50 text-sm text-center mt-8 animate-fade-in animate-delay-4">
-                11 live sessions · Lifetime access · Satisfaction guarantee · Slack community · 5/5 on Maven
-            </p>
+            <div class="hero-term bg-ink rounded-lg shadow-2xl overflow-hidden animate-fade-in animate-delay-2" aria-label="Example: Claude Code turns support tickets into a feature brief">
+                <div class="flex items-center gap-2 px-4 py-3 border-b border-cream/10">
+                    <span class="w-3 h-3 rounded-full bg-cream/20"></span><span class="w-3 h-3 rounded-full bg-cream/20"></span><span class="w-3 h-3 rounded-full bg-cream/20"></span>
+                    <span class="ml-3 text-cream/40 text-xs">claude ~/product</span>
+                </div>
+                <div id="hero-term-body" class="p-4 sm:p-5 text-[11px] sm:text-[13px] leading-5 sm:leading-6 text-cream/80 h-[300px] sm:h-[340px] overflow-hidden"></div>
+            </div>
         </div>
+
     </section>
 
     <!-- What You'll Learn -->
@@ -179,8 +191,8 @@
                 What You'll Learn
             </h2>
             <p class="text-ink/60 text-center text-lg mb-8">
-                Start using Cursor for every part of your product development.<br>
-                <span class="text-sm">(P.S. this entire site was built with Cursor)</span>
+                Six live days. Each one ends with something working that you built.<br>
+                <span class="text-sm">(P.S. this site was built and updated by coding agents)</span>
             </p>
 
             <!-- Style Switcher -->
@@ -348,22 +360,21 @@
                     </script>
                     <!-- Content -->
                     <div>
-                        <span class="text-terracotta font-display text-sm font-semibold tracking-wider uppercase">Module 01</span>
-                        <h3 class="font-display text-2xl font-medium mt-2 mb-6">
-                            Brainstorm useful product features that you'll actually build
+                        <h3 class="font-display text-2xl font-medium mb-6" style="text-wrap: balance">
+                            <span class="text-terracotta">Days 1 and 2:</span> Get comfortable with Claude Code and bring in your context
                         </h3>
                         <ul class="space-y-3 text-ink/70">
                             <li class="flex items-start gap-3">
                                 <i class="fa-solid fa-check text-sage text-sm mt-1.5"></i>
-                                <span>Setup coding agents to work on existing codebases, grounding your brainstorm in real product features</span>
+                                <span>Set up Claude Code and ship your first site and design on day one</span>
                             </li>
                             <li class="flex items-start gap-3">
                                 <i class="fa-solid fa-check text-sage text-sm mt-1.5"></i>
-                                <span>Provide useful context to transform your coding agents into senior tech leads</span>
+                                <span>Feed in your docs, specs, screenshots, and code, then save it as project memory</span>
                             </li>
                             <li class="flex items-start gap-3">
                                 <i class="fa-solid fa-check text-sage text-sm mt-1.5"></i>
-                                <span>Apply design thinking to your coding agents, so you actually know what to go build</span>
+                                <span>Write plans first, then build many prototypes at once to compare options</span>
                             </li>
                         </ul>
                     </div>
@@ -373,18 +384,21 @@
                 <div class="grid md:grid-cols-2 gap-12 items-center">
                     <!-- Content (left on desktop) -->
                     <div class="md:order-1 order-2">
-                        <span class="text-terracotta font-display text-sm font-semibold tracking-wider uppercase">Module 02</span>
-                        <h3 class="font-display text-2xl font-medium mt-2 mb-6">
-                            Build prototypes you can use to communicate ideas
+                        <h3 class="font-display text-2xl font-medium mb-6" style="text-wrap: balance">
+                            <span class="text-terracotta">Day 3:</span> Install new skills and make beautiful apps
                         </h3>
                         <ul class="space-y-3 text-ink/70">
                             <li class="flex items-start gap-3">
                                 <i class="fa-solid fa-check text-sage text-sm mt-1.5"></i>
-                                <span>Use coding agents as your UX designer and map out storyboards, user journeys, and low-fidelity wireframes</span>
+                                <span>Install skills, then improve them so the agent does your work your way</span>
                             </li>
                             <li class="flex items-start gap-3">
                                 <i class="fa-solid fa-check text-sage text-sm mt-1.5"></i>
-                                <span>Explore every angle and build many prototypes at once to make better tradeoffs quickly</span>
+                                <span>Re-create designs as code with Claude Design, your style guide, and Figma</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-check text-sage text-sm mt-1.5"></i>
+                                <span>Use browser mode and computer use to test your own product and onboarding</span>
                             </li>
                         </ul>
                     </div>
@@ -781,22 +795,21 @@
                     </script>
                     <!-- Content -->
                     <div>
-                        <span class="text-terracotta font-display text-sm font-semibold tracking-wider uppercase">Module 03</span>
-                        <h3 class="font-display text-2xl font-medium mt-2 mb-6">
-                            Become an expert at Cursor
+                        <h3 class="font-display text-2xl font-medium mb-6" style="text-wrap: balance">
+                            <span class="text-terracotta">Day 4:</span> 10x your output
                         </h3>
                         <ul class="space-y-3 text-ink/70">
                             <li class="flex items-start gap-3">
                                 <i class="fa-solid fa-check text-sage text-sm mt-1.5"></i>
-                                <span>Manage your agents' external memory so it has the right context for every new work session</span>
+                                <span>Connect outside data and build an analysis skill you can reuse</span>
                             </li>
                             <li class="flex items-start gap-3">
                                 <i class="fa-solid fa-check text-sage text-sm mt-1.5"></i>
-                                <span>Use MCP connectors and web search to add the right external context</span>
+                                <span>Automate your documentation and set up an agent chief of staff</span>
                             </li>
                             <li class="flex items-start gap-3">
                                 <i class="fa-solid fa-check text-sage text-sm mt-1.5"></i>
-                                <span>Leverage tests, code review, and other developer tools to improve the quality of your agent outputs</span>
+                                <span>Run Claude Code from your phone and share context with your team</span>
                             </li>
                         </ul>
                     </div>
@@ -806,22 +819,21 @@
                 <div class="grid md:grid-cols-2 gap-12 items-center">
                     <!-- Content (left on desktop) -->
                     <div class="md:order-1 order-2">
-                        <span class="text-terracotta font-display text-sm font-semibold tracking-wider uppercase">Module 04</span>
-                        <h3 class="font-display text-2xl font-medium mt-2 mb-6">
-                            Use AI across your entire development workflow
+                        <h3 class="font-display text-2xl font-medium mb-6" style="text-wrap: balance">
+                            <span class="text-terracotta">Days 5 and 6:</span> Bring prototypes to production
                         </h3>
                         <ul class="space-y-3 text-ink/70">
                             <li class="flex items-start gap-3">
                                 <i class="fa-solid fa-check text-sage text-sm mt-1.5"></i>
-                                <span>Analyze your customer usage and customer feedback data in context of your application</span>
+                                <span>Use GitHub, tests, and code review so changes land safely</span>
                             </li>
                             <li class="flex items-start gap-3">
                                 <i class="fa-solid fa-check text-sage text-sm mt-1.5"></i>
-                                <span>Write your product documentation and marketing collateral in context of your application</span>
+                                <span>Pick the right backend and deploy an app your coworkers can use</span>
                             </li>
                             <li class="flex items-start gap-3">
                                 <i class="fa-solid fa-check text-sage text-sm mt-1.5"></i>
-                                <span>Perform QA and product validation testing without manual work</span>
+                                <span>Build and break your own eval, then set up agents that improve themselves</span>
                             </li>
                         </ul>
                     </div>
@@ -1072,6 +1084,8 @@
         </div>
     </section>
 
+
+
     <div class="section-divider max-w-4xl mx-auto"></div>
 
     <!-- Instructors -->
@@ -1090,12 +1104,13 @@
                     <h3 class="font-display text-2xl font-medium mb-2">Aman Khan</h3>
                     <p class="text-terracotta font-medium mb-4 flex items-center justify-center md:justify-end gap-2">
                         <i class="fa-solid fa-briefcase"></i>
-                        Head of Product @ Arize AI
+                        Director of Product @ Google Agent Platform
                     </p>
                     <p class="text-ink/70 leading-relaxed mb-4">
-                        Featured on Lenny's List. Built AI products used by Uber, Duolingo, and Instacart. Teaches on deeplearning.ai.
+                        Previously Head of Product at Arize AI. Featured in Lenny's Newsletter. Led the deeplearning.ai course on Evaluating AI Agents.
                     </p>
-                    <div class="flex items-center justify-center md:justify-end gap-6 mb-4">
+                    <div class="flex flex-wrap items-center justify-center md:justify-end gap-x-6 gap-y-3 mb-4">
+                        <div class="h-6 flex items-center"><img src="assets/google.svg" alt="Google" class="h-5 max-w-16 company-logo object-contain"></div>
                         <div class="h-6 flex items-center"><img src="assets/arize.svg" alt="Arize AI" class="h-5 max-w-16 company-logo object-contain"></div>
                         <div class="h-6 flex items-center"><img src="assets/spotify.webp" alt="Spotify" class="h-5 max-w-16 company-logo object-contain"></div>
                         <div class="h-6 flex items-center"><img src="assets/apple.svg" alt="Apple" class="h-5 max-w-16 company-logo object-contain"></div>
@@ -1122,13 +1137,14 @@
                         Founder & AI PM
                     </p>
                     <p class="text-ink/70 leading-relaxed mb-4">
-                        Building an AI app with 100k+ downloads. Holds a patent for an AI shopping assistant. 10+ years in product.
+                        Built an AI investing app with 400k+ downloads. Led product at an AI evals company. Taught human computer interaction at UC Berkeley.
                     </p>
-                    <div class="flex items-center justify-center md:justify-start gap-6 mb-4">
+                    <div class="flex flex-wrap items-center justify-center md:justify-start gap-x-6 gap-y-3 mb-4">
                         <div class="h-6 flex items-center"><img src="assets/meta.svg" alt="Meta" class="h-6 max-w-24 company-logo object-contain"></div>
                         <div class="h-6 flex items-center"><img src="assets/adobe.svg" alt="Adobe" class="h-6 max-w-20 company-logo object-contain"></div>
                         <div class="h-6 flex items-center"><img src="assets/arize.svg" alt="Arize AI" class="h-5 max-w-16 company-logo object-contain"></div>
                         <div class="h-6 flex items-center"><img src="assets/fountain.svg" alt="Fountain" class="h-5 max-w-20 company-logo object-contain"></div>
+                        <div class="h-6 flex items-center"><img src="assets/UCB.svg" alt="UC Berkeley" class="h-4 max-w-20 company-logo object-contain"></div>
                     </div>
                     <div class="flex items-center justify-center md:justify-start gap-3">
                         <a href="https://www.linkedin.com/in/ericxiao/" target="_blank" class="text-ink/40 hover:text-terracotta transition-colors">
@@ -1139,6 +1155,29 @@
                         </a>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-4xl mx-auto"></div>
+
+    <!-- Who it's for -->
+    <section class="py-24 px-6">
+        <div class="max-w-5xl mx-auto grid md:grid-cols-5 gap-12 items-center">
+            <figure class="md:col-span-3">
+                <img src="assets/course-focus.webp" alt="Chart of a PM's confidence with AI from beginner to advanced. The course covers the stretch from trying AI tools to getting to production." class="w-full rounded-sm border border-cream-dark" loading="lazy" width="1200" height="872">
+                <figcaption class="text-ink/50 text-sm mt-3">From Aman's guide to AI PMs in Lenny's Newsletter.</figcaption>
+            </figure>
+            <div class="md:col-span-2">
+                <h2 class="font-display text-3xl md:text-4xl font-medium mb-6" style="text-wrap: balance">For PMs past the first prototype</h2>
+                <p class="text-ink/70 text-lg leading-relaxed mb-6">You've tried AI tools. They feel slow and the output is sloppy. This course gets you from there to agents that do real work, using what Aman and Eric run every day.</p>
+                <p class="text-ink/70 mb-3">Past students include:</p>
+                <ul class="space-y-2 text-ink/80">
+                    <li class="flex gap-3"><i class="fa-solid fa-user-tie text-sage mt-1"></i>Director of Product, Google Labs</li>
+                    <li class="flex gap-3"><i class="fa-solid fa-user-tie text-sage mt-1"></i>Lead PM of Meta's Muse</li>
+                    <li class="flex gap-3"><i class="fa-solid fa-user-tie text-sage mt-1"></i>CPO at Okta</li>
+                    <li class="flex gap-3"><i class="fa-solid fa-user-tie text-sage mt-1"></i>CEO of Zapier</li>
+                </ul>
             </div>
         </div>
     </section>
@@ -1158,8 +1197,8 @@
                         <i class="fa-solid fa-video text-sage"></i>
                     </div>
                     <div>
-                        <p class="font-medium">11 live sessions over 2 weeks</p>
-                        <p class="text-ink/60 text-sm">~5 hours per week, with optional office hours</p>
+                        <p class="font-medium">6 live build days</p>
+                        <p class="text-ink/60 text-sm">Recorded, with a written guide for every exercise</p>
                     </div>
                 </div>
                 <div class="flex items-start gap-4">
@@ -1167,8 +1206,8 @@
                         <i class="fa-solid fa-users text-terracotta"></i>
                     </div>
                     <div>
-                        <p class="font-medium">Access to professional engineers</p>
-                        <p class="text-ink/60 text-sm">You won't feel blocked by technical skills</p>
+                        <p class="font-medium">Engineers and AI PMs on call</p>
+                        <p class="text-ink/60 text-sm">Office hours 3 times a week, so code never blocks you</p>
                     </div>
                 </div>
                 <div class="flex items-start gap-4">
@@ -1176,8 +1215,8 @@
                         <i class="fa-solid fa-infinity text-sage"></i>
                     </div>
                     <div>
-                        <p class="font-medium">Lifetime access to recordings</p>
-                        <p class="text-ink/60 text-sm">Go back to course content whenever you need</p>
+                        <p class="font-medium">Lifetime access</p>
+                        <p class="text-ink/60 text-sm">Come back to the guides and recordings any time</p>
                     </div>
                 </div>
                 <div class="flex items-start gap-4">
@@ -1185,323 +1224,357 @@
                         <i class="fa-brands fa-slack text-terracotta"></i>
                     </div>
                     <div>
-                        <p class="font-medium">AI Product Playbook Slack community</p>
-                        <p class="text-ink/60 text-sm">Direct access to Aman & Eric anytime</p>
+                        <p class="font-medium">AI Product Playbook Slack</p>
+                        <p class="text-ink/60 text-sm">Ask Aman and Eric questions any time</p>
                     </div>
                 </div>
                 <div class="flex items-start gap-4">
                     <div class="w-10 h-10 bg-sage/10 rounded-full flex items-center justify-center flex-shrink-0">
-                        <i class="fa-solid fa-certificate text-sage"></i>
+                        <i class="fa-solid fa-hammer text-sage"></i>
                     </div>
                     <div>
-                        <p class="font-medium">Certificate of completion</p>
-                        <p class="text-ink/60 text-sm">Share on LinkedIn or with your employer</p>
+                        <p class="font-medium">A working product by demo day</p>
+                        <p class="text-ink/60 text-sm">Ship it and show it to the class</p>
                     </div>
                 </div>
                 <div class="flex items-start gap-4">
                     <div class="w-10 h-10 bg-terracotta/10 rounded-full flex items-center justify-center flex-shrink-0">
-                        <i class="fa-solid fa-shield-halved text-terracotta"></i>
+                        <i class="fa-solid fa-certificate text-terracotta"></i>
                     </div>
                     <div>
-                        <p class="font-medium">Maven Satisfaction Guarantee</p>
-                        <p class="text-ink/60 text-sm">Full refund available until halfway point</p>
+                        <p class="font-medium">Certificate of completion</p>
+                        <p class="text-ink/60 text-sm">Share it on LinkedIn or with your employer</p>
                     </div>
                 </div>
             </div>
+            <p class="text-ink/60 text-sm text-center mt-12">Team discounts on Maven: 20% off 2 to 9 seats, 25% off 10 or more.</p>
         </div>
     </section>
 
     <div class="section-divider max-w-4xl mx-auto"></div>
 
     <!-- Reviews -->
-    <section class="py-24 px-6">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="font-display text-3xl md:text-4xl font-medium text-center mb-16">
+    <section class="py-24 px-6" id="reviews">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="font-display text-3xl md:text-4xl font-medium text-center mb-4">
                 Student Reviews
             </h2>
-
-            <div class="space-y-8">
-                <!-- Review 1 - Blake -->
-                <blockquote class="bg-white border border-cream-dark rounded-sm p-8">
-                    <div class="flex items-center gap-1 mb-4">
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                    </div>
-                    <p class="text-lg leading-relaxed mb-6 italic">
-                        <i class="fa-solid fa-quote-left text-cream-dark mr-2"></i>
-                        This course is a game changer. As a PM I've had a lot of FOMO recently that I'm falling behind with everything developing so quickly with AI. This course totally demystifies a lot of the intimidating tooling and jargon, and you walk away with a ton of super valuable skills and tools. I specifically learned how to build and launch my own side projects, as well as plug Cursor into my tools at work to make myself a much higher leverage PM in my day to day work. Highly recommend!
-                        <i class="fa-solid fa-quote-right text-cream-dark ml-2"></i>
-                    </p>
-                    <footer class="flex items-center gap-4">
-                        <img src="assets/blake.png" alt="Blake" class="w-12 h-12 rounded-full object-cover">
+            <p class="text-ink/60 text-center mb-14">
+                <i class="fa-solid fa-star text-terracotta"></i> 4.9 average from 40 ratings on Maven
+            </p>
+            <div class="reviews-cols md:columns-2 lg:columns-3">
+                <blockquote class="bg-white border border-cream-dark rounded-sm p-7">
+                    <div class="leading-relaxed text-ink/80"><p class="mb-3 last:mb-0">I very much enjoyed this course and highly recommend it! I really appreciated the structure of the course - especially the focus on understanding practical skills and doing hands on exercises with the tools rather than just presentations on theory. Building with coding agents is truly something you have to learn by doing!</p><p class="mb-3 last:mb-0">I felt overwhelmed at times by the sheer scope of content covered but the course materials and reference resources were shared in such an accessible and organized way that it was easy for me to dive deeper into each topic outside of the scheduled sessions. I also really benefited from the open ended office hour times and found some of the highest value tidbits during these discussions.</p><p class="mb-3 last:mb-0">Thanks again Eric, Aman, Pin, and Steven! I entered this course having never used a coding agent of any kind and am leaving feeling like I can build anything I put my mind to!</p></div>
+                    <footer class="flex items-center gap-3 mt-6">
+                        <img src="assets/reviews/bryce.webp" alt="" class="w-11 h-11 rounded-full object-cover" loading="lazy" width="44" height="44">
+                        <div>
+                            <p class="font-medium">Bryce</p>
+                            <p class="text-ink/60 text-sm">Senior Product Manager @ Tandem Diabetes Care, Inc.</p>
+                        </div>
+                    </footer>
+                </blockquote>
+                <blockquote class="bg-white border border-cream-dark rounded-sm p-7">
+                    <div class="leading-relaxed text-ink/80"><p class="mb-3 last:mb-0">This should not be called a course. It should be called a workshop. It is hands-on and fast-paced from day 1. However, Eric, Aman and team make themselves available via office hours outside of the scheduled classes to help you understand the material, ask questions, and get any help you need to get the most out of this course. They are truly invested in your learning journey.</p><p class="mb-3 last:mb-0">My biggest takeaway was a mindset shift from working WITH AI to AI working FOR ME. I strongly recommend this &quot;course&quot; for anyone that wants to stop dabbling in AI and start building with it.</p></div>
+                    <footer class="flex items-center gap-3 mt-6">
+                        <img src="assets/reviews/tom.webp" alt="" class="w-11 h-11 rounded-full object-cover" loading="lazy" width="44" height="44">
+                        <div>
+                            <p class="font-medium">Tom</p>
+                            <p class="text-ink/60 text-sm">CEO @ nett, inc.</p>
+                        </div>
+                    </footer>
+                </blockquote>
+                <blockquote class="bg-white border border-cream-dark rounded-sm p-7">
+                    <div class="leading-relaxed text-ink/80"><p class="mb-3 last:mb-0">The course is labelled Claude Code for Product Managers, but I honestly feel that anybody who is not a programmer should do this course.</p><p class="mb-3 last:mb-0">It will help you to go beyond thinking of AI as a chatbot to experiencing firsthand how a general-purpose AI agent like Claude Code can give you superpowers and new ways of working.</p><p class="mb-3 last:mb-0">What is particularly great is the interactive form of learning. The team have put in a lot of effort to create exercises that you work through directly in Claude Code. It&#x27;s a much better hands-on way of learning rather than just watching presentations and reading articles.</p><p class="mb-3 last:mb-0">Don&#x27;t hesitate. Just sign up now. Do it!</p></div>
+                    <footer class="flex items-center gap-3 mt-6">
+                        <img src="assets/reviews/vik.webp" alt="" class="w-11 h-11 rounded-full object-cover" loading="lazy" width="44" height="44">
+                        <div>
+                            <p class="font-medium">Vik</p>
+                            <p class="text-ink/60 text-sm">AI Director of Product @ Metail</p>
+                        </div>
+                    </footer>
+                </blockquote>
+                <blockquote class="bg-white border border-cream-dark rounded-sm p-7">
+                    <div class="leading-relaxed text-ink/80"><p class="mb-3 last:mb-0">Eric, Aman, and Pin did an excellent job facilitating the course and starting with foundational AI understanding, system setup, and then moving into tactical examples. The &quot;learn by doing&quot; approach throughout the course was my favorite aspect, encouraging students to work through exercises in breakout rooms, and building confidence with different concepts. The course finished with a &quot;demo day&quot; where participants were able to showcase their project concepts and share their applied learnings. I think this course is a turning point for how I use AI in my job and personal life. Highly recommend!</p></div>
+                    <footer class="flex items-center gap-3 mt-6">
+                        <img src="assets/reviews/grant.webp" alt="" class="w-11 h-11 rounded-full object-cover" loading="lazy" width="44" height="44">
+                        <div>
+                            <p class="font-medium">Grant</p>
+                            <p class="text-ink/60 text-sm">Sr. Product Manager @ Tandem Diabetes Care</p>
+                        </div>
+                    </footer>
+                </blockquote>
+                <blockquote class="bg-white border border-cream-dark rounded-sm p-7">
+                    <div class="leading-relaxed text-ink/80"><p class="mb-3 last:mb-0">I highly recommend the course to any PM, especially if you don&#x27;t come from a technical background like me. Besides the live build sessions with Aman and Eric, Claude teaches you directly inside Claude Code-you learn by building, step by step, in the same place you actually work. Loved it!</p></div>
+                    <footer class="flex items-center gap-3 mt-6">
+                        <img src="assets/reviews/neda.webp" alt="" class="w-11 h-11 rounded-full object-cover" loading="lazy" width="44" height="44">
+                        <div>
+                            <p class="font-medium">Neda</p>
+                            <p class="text-ink/60 text-sm">Product Delivery @ Paysafe</p>
+                        </div>
+                    </footer>
+                </blockquote>
+                <blockquote class="bg-white border border-cream-dark rounded-sm p-7">
+                    <div class="leading-relaxed text-ink/80"><p class="mb-3 last:mb-0">Before this course, I had a basic understanding of Claude Code but never felt fully confident putting it into practice as a PM. The material built on my existing knowledge in a way that felt natural, not overwhelming, and each session layered on the last so the learning always felt connected and purposeful. The instructors were genuinely invested in every learner&#x27;s success, creating an environment where asking questions felt encouraged, not intimidating. I walked away with new skills and the confidence to actually use them. For PMs who want to stop sitting on the sidelines of the AI conversation and start driving it, this course is absolutely worth your time.</p></div>
+                    <footer class="flex items-center gap-3 mt-6">
+                        <img src="assets/reviews/sarah.webp" alt="" class="w-11 h-11 rounded-full object-cover" loading="lazy" width="44" height="44">
+                        <div>
+                            <p class="font-medium">Sarah</p>
+                            <p class="text-ink/60 text-sm">Senior Product Manager @ OpenSesame</p>
+                        </div>
+                    </footer>
+                </blockquote>
+                <blockquote class="bg-white border border-cream-dark rounded-sm p-7">
+                    <div class="leading-relaxed text-ink/80"><p class="mb-3 last:mb-0">I’d highly recommend this course for PMs who want to get more hands-on with coding agents. It does a great job demystifying the terminal, especially if you haven’t used it much before, and the hands-on projects were where I learned the most - from building a website and app to creating a skill.</p><p class="mb-3 last:mb-0">One note: it moves quickly, so expect to spend some time outside of class to keep up and get the most out of the class!</p></div>
+                    <footer class="flex items-center gap-3 mt-6">
+                        <img src="assets/reviews/travis.webp" alt="" class="w-11 h-11 rounded-full object-cover" loading="lazy" width="44" height="44">
+                        <div>
+                            <p class="font-medium">Travis</p>
+                            <p class="text-ink/60 text-sm">Senior Product Manager @ Wayfair</p>
+                        </div>
+                    </footer>
+                </blockquote>
+                <blockquote class="bg-white border border-cream-dark rounded-sm p-7">
+                    <div class="leading-relaxed text-ink/80"><p class="mb-3 last:mb-0">The course materials are exceptionally well-structured. Even with time zone differences and a busy travel schedule, I had no trouble keeping up. Being able to catch up via the recorded live sessions and work through the hands-on exercises alongside the written guides made everything very easy to understand.</p></div>
+                    <footer class="flex items-center gap-3 mt-6">
+                        <img src="assets/reviews/chisato.webp" alt="" class="w-11 h-11 rounded-full object-cover" loading="lazy" width="44" height="44">
+                        <div>
+                            <p class="font-medium">Chisato</p>
+                            <p class="text-ink/60 text-sm">Senior Product Marketing Manager @ Docusign</p>
+                        </div>
+                    </footer>
+                </blockquote>
+                <blockquote class="bg-white border border-cream-dark rounded-sm p-7">
+                    <div class="leading-relaxed text-ink/80"><p class="mb-3 last:mb-0">This course is an excellent all-round 0-1 with Claude Code and agentic tools generally. It has been a great springboard in pretty much everything I wanted to optimise with AI from creating complex artefacts to shipping production grade features fast and with minimal technical expertise. feel notably more capable in many aspects of my job, as well as feeling confident in harnessing AI and embracing future AI advancements.</p></div>
+                    <footer class="flex items-center gap-3 mt-6">
+                        <img src="assets/reviews/toju.webp" alt="" class="w-11 h-11 rounded-full object-cover" loading="lazy" width="44" height="44">
+                        <div>
+                            <p class="font-medium">Toju</p>
+                            <p class="text-ink/60 text-sm">Product Manager @ QuantSpark</p>
+                        </div>
+                    </footer>
+                </blockquote>
+                <blockquote class="bg-white border border-cream-dark rounded-sm p-7">
+                    <div class="leading-relaxed text-ink/80"><p class="mb-3 last:mb-0">I highly recommend Claude Code for Product Managers to everyone looking to get a full E2E walkthrough of how to use Claude Code as a PM. Within a few weeks I was able to fully build a personal passion project.</p></div>
+                    <footer class="flex items-center gap-3 mt-6">
+                        <img src="assets/reviews/mo.webp" alt="" class="w-11 h-11 rounded-full object-cover" loading="lazy" width="44" height="44">
+                        <div>
+                            <p class="font-medium">Mo</p>
+                            <p class="text-ink/60 text-sm">Senior Product Manager @ LinkedIn</p>
+                        </div>
+                    </footer>
+                </blockquote>
+                <blockquote class="bg-white border border-cream-dark rounded-sm p-7">
+                    <div class="leading-relaxed text-ink/80"><p class="mb-3 last:mb-0">This is easily one of the most up-to-date and practical hands-on AI courses I’ve seen. Eric, Aman, and the TA team are deeply committed to making AI accessible and understandable. They explain complex concepts in a clear, grounded way, without fluff or jargon. The course is compact, focused, and incredibly well put together. A lot of care and effort has gone into making AI Skills MD a truly top-tier learning experience.</p></div>
+                    <footer class="flex items-center gap-3 mt-6">
+                        <img src="assets/reviews/sheldon.webp" alt="" class="w-11 h-11 rounded-full object-cover" loading="lazy" width="44" height="44">
+                        <div>
+                            <p class="font-medium">Sheldon</p>
+                            <p class="text-ink/60 text-sm">Product manager @ Societe Generale investment bank</p>
+                        </div>
+                    </footer>
+                </blockquote>
+                <blockquote class="bg-white border border-cream-dark rounded-sm p-7">
+                    <div class="leading-relaxed text-ink/80"><p class="mb-3 last:mb-0">This course is a game changer. As a PM I&#x27;ve had a lot of FOMO recently that I&#x27;m falling behind with everything developing so quickly with AI. This course totally demystifies a lot of the intimidating tooling and jargon, and you walk away with a ton of super valuable skills and tools. I specifically learned how to build and launch my own side projects, as well as plug Cursor into my tools at work to make myself a much higher leverage PM in my day to day work. Highly reccomend!</p></div>
+                    <footer class="flex items-center gap-3 mt-6">
+                        <img src="assets/reviews/blake.webp" alt="" class="w-11 h-11 rounded-full object-cover" loading="lazy" width="44" height="44">
                         <div>
                             <p class="font-medium">Blake</p>
-                            <p class="text-ink/60 text-sm flex items-center gap-1">
-                                <i class="fa-solid fa-building text-xs"></i>
-                                Product Lead @ AllTrails
-                            </p>
+                            <p class="text-ink/60 text-sm">Product Lead @ AllTrails</p>
                         </div>
                     </footer>
                 </blockquote>
-
-                <!-- Review 2 - MHV -->
-                <blockquote class="bg-white border border-cream-dark rounded-sm p-8">
-                    <div class="flex items-center gap-1 mb-4">
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                    </div>
-                    <p class="text-lg leading-relaxed mb-6 italic">
-                        <i class="fa-solid fa-quote-left text-cream-dark mr-2"></i>
-                        Prior to signing up for Aman's course, I spent months stuck in a loop of consuming AI videos and articles, feeling like I was learning, but something was blocking me from taking my skills to the next level. Aman and Eric just cut through all that. They gave me a starting point and said 'go build something.' The framework around coding agents, observability, and evals made it click in a way the conceptual stuff never did. It's wild how much faster you learn when you're doing the thing versus reading about it. One of the biggest wins was psychological. It gave me permission to stop overthinking and just start shipping.
-                        <i class="fa-solid fa-quote-right text-cream-dark ml-2"></i>
-                    </p>
-                    <footer class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-sage rounded-full flex items-center justify-center">
-                            <span class="text-white font-medium">M</span>
-                        </div>
+                <blockquote class="bg-white border border-cream-dark rounded-sm p-7">
+                    <div class="leading-relaxed text-ink/80"><p class="mb-3 last:mb-0">Whether you&#x27;re looking to go from 0-&gt;1 or 1-&gt;10, this course is extremely useful for Claude Code skills in your day-to-day or building something! Great course and Eric and Aman are very good instructors.</p><p class="mb-3 last:mb-0">Despite that Claude Code or other AI tools are evolving fast, this helps set the stage for your own learning and adoption!</p></div>
+                    <footer class="flex items-center gap-3 mt-6">
+                        <img src="assets/reviews/shilpa.webp" alt="" class="w-11 h-11 rounded-full object-cover" loading="lazy" width="44" height="44">
                         <div>
-                            <p class="font-medium">MHV</p>
-                            <p class="text-ink/60 text-sm flex items-center gap-1">
-                                <i class="fa-solid fa-building text-xs"></i>
-                                Product Manager
-                            </p>
+                            <p class="font-medium">Shilpa</p>
+                            <p class="text-ink/60 text-sm">Principal PM @ Independent</p>
                         </div>
                     </footer>
                 </blockquote>
-
-                <!-- Review 3 - S.M. -->
-                <blockquote class="bg-white border border-cream-dark rounded-sm p-8">
-                    <div class="flex items-center gap-1 mb-4">
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                    </div>
-                    <p class="text-lg leading-relaxed mb-6 italic">
-                        <i class="fa-solid fa-quote-left text-cream-dark mr-2"></i>
-                        This course was incredibly fascinating. Coming up with just one idea and transforming it into a completely new approach to AI thinking, a structured workflow for AI agentic coding, and an entirely new set of strategies for evaluation and measurement of non-deterministic agentic systems exceeded my expectations. The course went beyond what I anticipated; the guest lectures were also outstanding, featuring top industry experts who clarified concepts like continuous calibration, deployment, and multi-agent architectures. I highly recommend this 200%. Aman and Eric consistently went above and beyond, offering additional office hours, troubleshooting, and dedicating a tremendous amount of time.
-                        <i class="fa-solid fa-quote-right text-cream-dark ml-2"></i>
-                    </p>
-                    <footer class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-terracotta rounded-full flex items-center justify-center">
-                            <span class="text-white font-medium">S</span>
-                        </div>
-                        <div>
-                            <p class="font-medium">S.M.</p>
-                            <p class="text-ink/60 text-sm flex items-center gap-1">
-                                <i class="fa-solid fa-building text-xs"></i>
-                                Product Manager
-                            </p>
-                        </div>
-                    </footer>
-                </blockquote>
-
-                <!-- Review 4 - Jerry -->
-                <blockquote class="bg-white border border-cream-dark rounded-sm p-8">
-                    <div class="flex items-center gap-1 mb-4">
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                    </div>
-                    <p class="text-lg leading-relaxed mb-6 italic">
-                        <i class="fa-solid fa-quote-left text-cream-dark mr-2"></i>
-                        I'm a designer with no technical background, and even though this class is designed for PMs, it was incredibly valuable and practical. Eric, Aman, and Steven are rockstars — answered everything from beginner to advanced questions, and helped connect technical skills to real product and design work.
-                        <i class="fa-solid fa-quote-right text-cream-dark ml-2"></i>
-                    </p>
-                    <footer class="flex items-center gap-4">
-                        <img src="assets/jerry.png" alt="Jerry" class="w-12 h-12 rounded-full object-cover">
+                <blockquote class="bg-white border border-cream-dark rounded-sm p-7">
+                    <div class="leading-relaxed text-ink/80"><p class="mb-3 last:mb-0">I’m a designer with no technical background, and even though this class is designed for PMs, it was incredibly valuable and practical. Eric, Aman, and Steven are rockstars -- answered everything from beginner to advanced questions, and helped connect technical skills to real product and design work. Highly recommend for anyone who wants to genuinely understand Cursor, work more effectively with technical teams, and expand how you think about your own capabilities, this class is absolutely worth it.</p></div>
+                    <footer class="flex items-center gap-3 mt-6">
+                        <img src="assets/reviews/jerry.webp" alt="" class="w-11 h-11 rounded-full object-cover" loading="lazy" width="44" height="44">
                         <div>
                             <p class="font-medium">Jerry</p>
-                            <p class="text-ink/60 text-sm flex items-center gap-1">
-                                <i class="fa-solid fa-building text-xs"></i>
-                                UX Lead Manager @ Gartner
-                            </p>
+                            <p class="text-ink/60 text-sm">UX Lead Manager @ Gartner</p>
                         </div>
                     </footer>
                 </blockquote>
-
-                <!-- Review 5 - Chris -->
-                <blockquote class="bg-white border border-cream-dark rounded-sm p-8">
-                    <div class="flex items-center gap-1 mb-4">
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                    </div>
-                    <p class="text-lg leading-relaxed mb-6 italic">
-                        <i class="fa-solid fa-quote-left text-cream-dark mr-2"></i>
-                        The course was good for beginners and people who have already worked with Cursor. It had its wow-moments in every lesson and there is more content provided than we could work on. I will work myself way deeper into the content over the next couple of weeks. So, the fun only begins now (after the course)!
-                        <i class="fa-solid fa-quote-right text-cream-dark ml-2"></i>
-                    </p>
-                    <footer class="flex items-center gap-4">
-                        <img src="assets/chris.webp" alt="Chris" class="w-12 h-12 rounded-full object-cover">
+                <blockquote class="bg-white border border-cream-dark rounded-sm p-7">
+                    <div class="leading-relaxed text-ink/80"><p class="mb-3 last:mb-0">Claude Code for Product Managers is excellent. It covers an essential skill set for anyone looking to get ahead in the AI space.</p><p class="mb-3 last:mb-0">The content and course exercises are well-structured and yield strong learning outcomes. This certification is definitely worth the investment!</p></div>
+                    <footer class="flex items-center gap-3 mt-6">
+                        <img src="assets/reviews/katy.webp" alt="" class="w-11 h-11 rounded-full object-cover" loading="lazy" width="44" height="44">
                         <div>
-                            <p class="font-medium">Chris</p>
-                            <p class="text-ink/60 text-sm flex items-center gap-1">
-                                <i class="fa-solid fa-building text-xs"></i>
-                                Product Manager @ IU
-                            </p>
+                            <p class="font-medium">Katy</p>
+                            <p class="text-ink/60 text-sm">Head of Product, Wallet @ SwiftConnect</p>
                         </div>
                     </footer>
                 </blockquote>
-
-                <!-- Review 6 - W.B. -->
-                <blockquote class="bg-white border border-cream-dark rounded-sm p-8">
-                    <div class="flex items-center gap-1 mb-4">
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                    </div>
-                    <p class="text-lg leading-relaxed mb-6 italic">
-                        <i class="fa-solid fa-quote-left text-cream-dark mr-2"></i>
-                        Aman, Tal and Eric are super knowledgeable and pack so much in! So great!! And they are so responsive to allowing time for questions and break out rooms, and breaks to work on focused examples. Totally Recommend! Awesome! THANK YOU! :)
-                        <i class="fa-solid fa-quote-right text-cream-dark ml-2"></i>
-                    </p>
-                    <footer class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-sage rounded-full flex items-center justify-center">
-                            <span class="text-white font-medium">W</span>
-                        </div>
+                <blockquote class="bg-white border border-cream-dark rounded-sm p-7">
+                    <div class="leading-relaxed text-ink/80"><p class="mb-3 last:mb-0">Highly recommend. Solid grounding in AI primitives, hands-on learning, and practical architectural patterns, all in a small classroom setting.</p></div>
+                    <footer class="flex items-center gap-3 mt-6">
+                        <img src="assets/reviews/herman.webp" alt="" class="w-11 h-11 rounded-full object-cover" loading="lazy" width="44" height="44">
                         <div>
-                            <p class="font-medium">W.B.</p>
-                            <p class="text-ink/60 text-sm flex items-center gap-1">
-                                <i class="fa-solid fa-building text-xs"></i>
-                                Founder, MD
-                            </p>
-                        </div>
-                    </footer>
-                </blockquote>
-
-                <!-- Review 7 - Camille -->
-                <blockquote class="bg-white border border-cream-dark rounded-sm p-8">
-                    <div class="flex items-center gap-1 mb-4">
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                    </div>
-                    <p class="text-lg leading-relaxed mb-6 italic">
-                        <i class="fa-solid fa-quote-left text-cream-dark mr-2"></i>
-                        Overall a great course! Very applicable to my daily job as a product manager.
-                        <i class="fa-solid fa-quote-right text-cream-dark ml-2"></i>
-                    </p>
-                    <footer class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-terracotta rounded-full flex items-center justify-center">
-                            <span class="text-white font-medium">C</span>
-                        </div>
-                        <div>
-                            <p class="font-medium">Camille</p>
-                            <p class="text-ink/60 text-sm flex items-center gap-1">
-                                <i class="fa-solid fa-building text-xs"></i>
-                                Product @ AllTrails
-                            </p>
-                        </div>
-                    </footer>
-                </blockquote>
-
-                <!-- Review 8 - Mel -->
-                <blockquote class="bg-white border border-cream-dark rounded-sm p-8">
-                    <div class="flex items-center gap-1 mb-4">
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                        <i class="fa-solid fa-star text-terracotta"></i>
-                    </div>
-                    <p class="text-lg leading-relaxed mb-6 italic">
-                        <i class="fa-solid fa-quote-left text-cream-dark mr-2"></i>
-                        Very concrete and valuable course!
-                        <i class="fa-solid fa-quote-right text-cream-dark ml-2"></i>
-                    </p>
-                    <footer class="flex items-center gap-4">
-                        <img src="assets/mel.webp" alt="Mel" class="w-12 h-12 rounded-full object-cover">
-                        <div>
-                            <p class="font-medium">Mel</p>
-                            <p class="text-ink/60 text-sm flex items-center gap-1">
-                                <i class="fa-solid fa-building text-xs"></i>
-                                CX & Strategy Lead @ Dragonfly
-                            </p>
+                            <p class="font-medium">Herman</p>
+                            <p class="text-ink/60 text-sm">Technical PM, AI @ Zillow</p>
                         </div>
                     </footer>
                 </blockquote>
             </div>
+            <div class="grid md:grid-cols-2 gap-6 mt-10">
+                <img src="assets/testimonial-yau.webp" alt="Slack message from a student: the course taught the fundamentals that six hours of other training missed." class="w-full rounded-sm" loading="lazy" width="1200" height="1095">
+                <img src="assets/testimonial-julie.webp" alt="Slack message from a student: the course took them from intimidated to 'oh cool, I can totally do this'." class="w-full rounded-sm self-start" loading="lazy" width="1200" height="464">
+            </div>
+            <p class="text-center mt-10">
+                <a href="https://maven.com/aman-khan/claude-code-for-product-managers#reviews" target="_blank" rel="noopener" class="text-terracotta font-medium underline underline-offset-4 hover:text-terracotta-dark">Read all reviews on Maven</a>
+            </p>
         </div>
     </section>
 
-    <!-- Free Resources -->
-    <section class="py-24 px-6">
-        <div class="max-w-5xl mx-auto">
+    <!-- Lightning Lessons -->
+    <section class="py-24 px-6" id="lessons">
+        <div class="max-w-6xl mx-auto">
             <h2 class="font-display text-3xl md:text-4xl font-medium text-center mb-4">
-                Free Resources
+                Free Lightning Lessons
             </h2>
             <p class="text-ink/60 text-center mb-12">
-                Watch our free recordings to get a taste of the course
+                Short live sessions with Aman and Eric. Every past one has a free recording.
             </p>
 
-            <div class="grid md:grid-cols-3 gap-6">
-                <!-- Recording 1: Cursor for Product Managers -->
-                <a href="https://maven.com/p/caee21/cursor-for-product-managers" target="_blank" class="group block bg-white border border-cream-dark rounded-sm overflow-hidden hover:shadow-lg transition-all duration-300">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <a href="https://maven.com/p/bcfe60" target="_blank" rel="noopener" class="lesson group block bg-white border border-cream-dark rounded-sm overflow-hidden hover:shadow-lg transition-all duration-300">
                     <div class="aspect-video bg-ink relative overflow-hidden">
-                        <img src="assets/ship10xfaster.webp" alt="Cursor for Product Managers" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300">
+                        <img src="assets/ll/bcfe60.webp" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" width="768" height="403">
                     </div>
                     <div class="p-5">
-                        <h3 class="font-display text-lg font-medium mb-2 group-hover:text-terracotta transition-colors">
-                            Cursor for Product Managers
-                        </h3>
+                        <span data-live-until="2026-11-13T18:00:00Z" class="inline-block bg-terracotta text-white text-xs font-medium px-2 py-0.5 rounded-sm mb-3">Live · Free</span>
+                        <h3 class="font-display text-lg font-medium mb-2 group-hover:text-terracotta transition-colors">Build Your Product Factory with AI Agents</h3>
+                        <p class="text-ink/60 text-sm mb-3">Fri, Nov 13 · 12:00 PM ET · 60 min</p>
+                        <p class="lesson-desc text-ink/60 text-sm leading-relaxed mb-4">Give agents company context, put product sense into reusable skills, and review their work. Leave with a plan for a team of agents that helps decide what to build.</p>
                         <span class="inline-flex items-center gap-2 text-terracotta text-sm font-medium">
                             <i class="fa-solid fa-circle-play"></i>
-                            Get Recording
+                            <span data-live-label="Watch the recording">Save your spot</span>
                             <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
                         </span>
                     </div>
                 </a>
-
-                <!-- Recording 2: Ship Finished Features -->
-                <a href="https://maven.com/p/69721a/how-to-ship-finished-features-from-single-line-prompts" target="_blank" class="group block bg-white border border-cream-dark rounded-sm overflow-hidden hover:shadow-lg transition-all duration-300">
+                <a href="https://maven.com/p/eb33bf" target="_blank" rel="noopener" class="lesson group block bg-white border border-cream-dark rounded-sm overflow-hidden hover:shadow-lg transition-all duration-300">
                     <div class="aspect-video bg-ink relative overflow-hidden">
-                        <img src="assets/shipfinishedfeatures.webp" alt="Ship Finished Features" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300">
+                        <img src="assets/ll/eb33bf.webp" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" width="768" height="403">
+
                     </div>
                     <div class="p-5">
-                        <h3 class="font-display text-lg font-medium mb-2 group-hover:text-terracotta transition-colors">
-                            How to Ship Finished Features
-                        </h3>
+                        <h3 class="font-display text-lg font-medium mb-2 group-hover:text-terracotta transition-colors">Build Your First Simulation Environment for Evals &amp; RL</h3>
+                        <p class="text-ink/60 text-sm mb-3">Oct 16 · 60 min</p>
+                        <p class="lesson-desc text-ink/60 text-sm leading-relaxed mb-4">What simulation environments are, why teams use them to test and train agents, and how to turn a real task into one, live.</p>
                         <span class="inline-flex items-center gap-2 text-terracotta text-sm font-medium">
                             <i class="fa-solid fa-circle-play"></i>
-                            Get Recording
+                            Watch the recording
                             <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
                         </span>
                     </div>
                 </a>
-
-                <!-- Recording 3: AI Systems for PMs -->
-                <a href="https://maven.com/p/34afdb/ai-systems-for-p-ms-to-ship-10x-faster" target="_blank" class="group block bg-white border border-cream-dark rounded-sm overflow-hidden hover:shadow-lg transition-all duration-300">
+                <a href="https://maven.com/p/e07d71" target="_blank" rel="noopener" class="lesson group block bg-white border border-cream-dark rounded-sm overflow-hidden hover:shadow-lg transition-all duration-300">
                     <div class="aspect-video bg-ink relative overflow-hidden">
-                        <img src="assets/ship10xfaster.webp" alt="AI Systems for PMs" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300">
+                        <img src="assets/ll/e07d71.webp" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" width="768" height="403">
+
                     </div>
                     <div class="p-5">
-                        <h3 class="font-display text-lg font-medium mb-2 group-hover:text-terracotta transition-colors">
-                            AI Systems for PMs to Ship 10x Faster
-                        </h3>
+                        <h3 class="font-display text-lg font-medium mb-2 group-hover:text-terracotta transition-colors">Vibe Check for PMs: Opus, Fable, GPT-5.6, Kimi K3</h3>
+                        <p class="text-ink/60 text-sm mb-3">Aug 6 · 45 min</p>
+                        <p class="lesson-desc text-ink/60 text-sm leading-relaxed mb-4">Four new models tested live on real PM tasks. Which one to use as a thinking partner, which one to hand tasks to, and how to test them on your own work.</p>
                         <span class="inline-flex items-center gap-2 text-terracotta text-sm font-medium">
                             <i class="fa-solid fa-circle-play"></i>
-                            Get Recording
+                            Watch the recording
+                            <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </span>
+                    </div>
+                </a>
+                <a href="https://maven.com/p/f1dbdc" target="_blank" rel="noopener" class="lesson group block bg-white border border-cream-dark rounded-sm overflow-hidden hover:shadow-lg transition-all duration-300">
+                    <div class="aspect-video bg-ink relative overflow-hidden">
+                        <img src="assets/ll/f1dbdc.webp" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" width="768" height="403">
+
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-display text-lg font-medium mb-2 group-hover:text-terracotta transition-colors">How to Use AI as a Team</h3>
+                        <p class="text-ink/60 text-sm mb-3">May 8 · 45 min · with Tal Raviv</p>
+                        <p class="lesson-desc text-ink/60 text-sm leading-relaxed mb-4">Share AI context across your team so everyone starts with good context and improvements add up. Set up from scratch on screen.</p>
+                        <span class="inline-flex items-center gap-2 text-terracotta text-sm font-medium">
+                            <i class="fa-solid fa-circle-play"></i>
+                            Watch the recording
+                            <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </span>
+                    </div>
+                </a>
+                <a href="https://maven.com/p/9762b4" target="_blank" rel="noopener" class="lesson group block bg-white border border-cream-dark rounded-sm overflow-hidden hover:shadow-lg transition-all duration-300">
+                    <div class="aspect-video bg-ink relative overflow-hidden">
+                        <img src="assets/ll/9762b4.webp" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" width="768" height="403">
+
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-display text-lg font-medium mb-2 group-hover:text-terracotta transition-colors">OpenClaw for Product Managers</h3>
+                        <p class="text-ink/60 text-sm mb-3">Mar 11 · 60 min</p>
+                        <p class="lesson-desc text-ink/60 text-sm leading-relaxed mb-4">Eric runs his company through OpenClaw chat messages. Send a voice note or a screenshot, and it starts doing the work like a chief of staff.</p>
+                        <span class="inline-flex items-center gap-2 text-terracotta text-sm font-medium">
+                            <i class="fa-solid fa-circle-play"></i>
+                            Watch the recording
+                            <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </span>
+                    </div>
+                </a>
+                <a href="https://maven.com/p/caee21" target="_blank" rel="noopener" class="lesson group block bg-white border border-cream-dark rounded-sm overflow-hidden hover:shadow-lg transition-all duration-300">
+                    <div class="aspect-video bg-ink relative overflow-hidden">
+                        <img src="assets/ll/caee21.webp" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" width="768" height="403">
+
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-display text-lg font-medium mb-2 group-hover:text-terracotta transition-colors">Cursor for Product Managers</h3>
+                        <p class="text-ink/60 text-sm mb-3">Dec 12, 2025 · 45 min</p>
+                        <p class="lesson-desc text-ink/60 text-sm leading-relaxed mb-4">Why PMs who build real products they use every day become the AI leaders on their teams.</p>
+                        <span class="inline-flex items-center gap-2 text-terracotta text-sm font-medium">
+                            <i class="fa-solid fa-circle-play"></i>
+                            Watch the recording
+                            <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </span>
+                    </div>
+                </a>
+                <a href="https://maven.com/p/34afdb" target="_blank" rel="noopener" class="lesson group block bg-white border border-cream-dark rounded-sm overflow-hidden hover:shadow-lg transition-all duration-300">
+                    <div class="aspect-video bg-ink relative overflow-hidden">
+                        <img src="assets/ll/34afdb.webp" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" width="768" height="403">
+
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-display text-lg font-medium mb-2 group-hover:text-terracotta transition-colors">AI Systems for PMs to Ship 10x Faster</h3>
+                        <p class="text-ink/60 text-sm mb-3">Aug 27, 2025 · 45 min</p>
+                        <p class="lesson-desc text-ink/60 text-sm leading-relaxed mb-4">Use AI that reads your code to understand effort, prototype inside your real app, and hand off cleanly to design and engineering.</p>
+                        <span class="inline-flex items-center gap-2 text-terracotta text-sm font-medium">
+                            <i class="fa-solid fa-circle-play"></i>
+                            Watch the recording
+                            <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </span>
+                    </div>
+                </a>
+                <a href="https://maven.com/p/69721a" target="_blank" rel="noopener" class="lesson group block bg-white border border-cream-dark rounded-sm overflow-hidden hover:shadow-lg transition-all duration-300">
+                    <div class="aspect-video bg-ink relative overflow-hidden">
+                        <img src="assets/ll/69721a.webp" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" width="768" height="403">
+
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-display text-lg font-medium mb-2 group-hover:text-terracotta transition-colors">How to Ship Finished Features From Single Line Prompts</h3>
+                        <p class="text-ink/60 text-sm mb-3">Jun 26, 2025 · 45 min</p>
+                        <p class="lesson-desc text-ink/60 text-sm leading-relaxed mb-4">The difference between a PM who plans features and one who ships them.</p>
+                        <span class="inline-flex items-center gap-2 text-terracotta text-sm font-medium">
+                            <i class="fa-solid fa-circle-play"></i>
+                            Watch the recording
                             <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
                         </span>
                     </div>
                 </a>
             </div>
+
         </div>
     </section>
 
@@ -1509,22 +1582,19 @@
     <section class="py-24 px-6 bg-ink text-cream">
         <div class="max-w-2xl mx-auto text-center">
             <h2 class="font-display text-3xl md:text-4xl font-medium mb-6">
-                Ready to become an<br>AI-native PM?
+                Ready to hand your<br>work to AI agents?
             </h2>
             <p class="text-cream/70 mb-10 text-lg">
-                Book a call and transform how you build products.
+                Join the next live cohort, or start the self-paced version today.
             </p>
-
-            <a href="mailto:amanaiproduct@gmail.com?subject=Schedule%20a%20Workshop"
+            <a href="https://maven.com/aman-khan/claude-code-for-product-managers" target="_blank" rel="noopener"
                class="inline-flex items-center gap-2 bg-terracotta hover:bg-terracotta-dark text-white px-10 py-4 rounded-sm font-body text-lg font-medium transition-all duration-200 hover:shadow-xl mb-4">
-                <i class="fa-solid fa-envelope"></i>
-                Schedule a Workshop
+                Enroll on Maven
+                <i class="fa-solid fa-arrow-right text-sm"></i>
             </a>
             <div>
-                <a href="https://maven.com/aman-khan/coding-agents-for-product-managers"
-                   target="_blank"
-                   class="text-cream/70 hover:text-cream text-sm font-body transition-colors duration-200 underline underline-offset-2">
-                    View our Maven course
+                <a href="#lessons" class="text-cream/70 hover:text-cream text-sm font-body transition-colors duration-200 underline underline-offset-2">
+                    Not sure yet? Watch a free lesson first
                 </a>
             </div>
         </div>
@@ -1535,12 +1605,12 @@
         <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
             <div class="flex items-center gap-3">
                 <div class="h-8 w-8 rounded-lg bg-ink flex items-center justify-center">
-                    <i class="fa-solid fa-arrow-pointer text-cream text-sm"></i>
+                    <i class="fa-solid fa-terminal text-cream text-sm"></i>
                 </div>
-                <span class="font-display text-lg">Cursor for PMs</span>
+                <span class="font-display text-lg">Claude Code for PMs</span>
             </div>
             <div class="flex items-center gap-6 text-ink/60 text-sm">
-                <a href="https://maven.com/aman-khan/coding-agents-for-product-managers#faqs" target="_blank" class="hover:text-ink flex items-center gap-1">
+                <a href="https://maven.com/aman-khan/claude-code-for-product-managers#faqs" target="_blank" class="hover:text-ink flex items-center gap-1">
                     <i class="fa-solid fa-circle-question"></i> FAQ
                 </a>
                 <a href="https://maven.com/terms" target="_blank" class="hover:text-ink flex items-center gap-1">
@@ -1550,77 +1620,43 @@
                     <i class="fa-solid fa-shield-halved"></i> Privacy
                 </a>
             </div>
-            <p class="text-ink/50 text-sm">&copy; 2026 Cursor for PMs</p>
+            <p class="text-ink/50 text-sm">&copy; 2026 Claude Code for PMs</p>
         </div>
     </footer>
 
-    <!-- Domain-based branding -->
+
+
     <script>
-        (function() {
-            const isClaudeCode = window.location.hostname === 'claudecodepm.com' ||
-                                 window.location.hostname === 'www.claudecodepm.com' ||
-                                 window.location.search.includes('brand=claude');
-
-            if (isClaudeCode) {
-                // Update page title
-                document.title = 'Claude Code for Product Managers';
-
-                // Simple text replacements
-                const textReplacements = [
-                    ['Cursor for PMs', 'Claude Code for PMs'],
-                    ['Cursor for Product Managers', 'Claude Code for Product Managers'],
-                    ['Become an expert at Cursor', 'Become an expert at Claude Code'],
-                    ['Start using Cursor for every part', 'Start using Claude Code for every part'],
-                    ['built with Cursor', 'built with Claude Code']
-                ];
-
-                // Walk through all text nodes and replace
-                const walker = document.createTreeWalker(
-                    document.body,
-                    NodeFilter.SHOW_TEXT,
-                    null,
-                    false
-                );
-
-                const textNodes = [];
-                while (walker.nextNode()) {
-                    textNodes.push(walker.currentNode);
-                }
-
-                textNodes.forEach(node => {
-                    let text = node.textContent;
-                    let changed = false;
-                    textReplacements.forEach(([from, to]) => {
-                        if (text.includes(from)) {
-                            text = text.split(from).join(to);
-                            changed = true;
-                        }
-                    });
-                    if (changed) {
-                        node.textContent = text;
-                    }
-                });
-
-                // Handle the hero title with <br> tag specially
-                const heroTitle = document.querySelector('h1.font-display');
-                if (heroTitle && heroTitle.textContent.includes('Cursor')) {
-                    // Clear and rebuild with safe DOM methods
-                    while (heroTitle.firstChild) {
-                        heroTitle.removeChild(heroTitle.firstChild);
-                    }
-                    heroTitle.appendChild(document.createTextNode('Claude Code for'));
-                    heroTitle.appendChild(document.createElement('br'));
-                    heroTitle.appendChild(document.createTextNode('Product Managers'));
-                }
-
-                // Update icon from arrow-pointer to terminal for Claude Code branding
-                document.querySelectorAll('.fa-arrow-pointer').forEach(icon => {
-                    icon.classList.remove('fa-arrow-pointer');
-                    icon.classList.add('fa-terminal');
-                });
-            }
-        })();
+        document.querySelectorAll('[data-live-until]').forEach(b => {
+            if (Date.now() < Date.parse(b.dataset.liveUntil)) return;
+            const card = b.closest('a');
+            card.querySelector('[data-live-label]').textContent = card.querySelector('[data-live-label]').dataset.liveLabel;
+            b.remove();
+        });
     </script>
-
+    <script>
+    (() => {
+        const lines = [["p", "> Turn last week's 40 support tickets into a feature brief"], ["d", "Reading tickets.csv and docs/roadmap.md"], ["d", "Grouping by problem: 3 themes found"], ["o", "  1. Export fails on large reports  (17 tickets)"], ["o", "  2. Can't find sharing settings      (14 tickets)"], ["o", "  3. Slow dashboard on mobile        (9 tickets)"], ["d", "Checking the code for where export breaks"], ["o", "  Found it: reports over 10MB time out in export.ts"], ["d", "Writing brief.md with quotes, size, and a fix plan"], ["d", "Building a clickable prototype of the new share menu"], ["s", "Done. brief.md and a prototype link are ready for review."]];
+        const body = document.getElementById('hero-term-body');
+        const color = { p: 'text-cream', d: 'text-cream/50', o: 'text-cream/80', s: 'text-sage' };
+        const prefix = { p: '', d: '● ', o: '', s: '✓ ' };
+        const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const mk = (k, t) => { const el = document.createElement('div'); el.className = 'ln ' + color[k]; el.textContent = prefix[k] + t; return el; };
+        if (reduce) { lines.forEach(([k, t]) => body.appendChild(mk(k, t))); return; }
+        const caret = document.createElement('span'); caret.className = 'caret';
+        let i = 0;
+        const next = () => {
+            if (i >= lines.length) { setTimeout(() => { body.textContent = ''; i = 0; next(); }, 6000); return; }
+            const [k, t] = lines[i++];
+            if (k === 'p') {
+                const el = mk('p', ''); body.appendChild(el); body.scrollTop = body.scrollHeight; el.appendChild(caret);
+                let c = 0;
+                const type = () => { el.firstChild && el.firstChild.nodeType === 3 ? el.firstChild.textContent = t.slice(0, ++c) : el.insertBefore(document.createTextNode(t.slice(0, ++c)), caret); c < t.length ? setTimeout(type, 28) : setTimeout(() => { caret.remove(); next(); }, 500); };
+                type();
+            } else { body.appendChild(mk(k, t)); body.scrollTop = body.scrollHeight; setTimeout(next, k === 'd' ? 650 : 260); }
+        };
+        new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { o.disconnect(); setTimeout(next, 700); } }).observe(body);
+    })();
+    </script>
 </body>
 </html>

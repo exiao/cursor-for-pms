@@ -172,24 +172,26 @@ The site is deployed as **two separate static sites** on Render.com, each with d
 
 ### Environment Variables
 
-| Site | SITE_URL | OG_IMAGE | OG_TITLE | FAVICON |
-|------|----------|----------|----------|---------|
-| Cursor | `https://cursorpm.com` | `og-cursor.png` | `Cursor for Product Managers` | `cursor` |
-| Claude Code | `https://claudecodepm.com` | `og-claude.png` | `Claude Code for Product Managers` | `terminal` |
+| Site | SITE_URL | OG_IMAGE | OG_TITLE |
+|------|----------|----------|----------|
+| Cursor domain | `https://cursorpm.com` | `og-claude.png` | `Claude Code and Codex for Product Managers` |
+| Claude Code | `https://claudecodepm.com` | `og-claude.png` | `Claude Code and Codex for Product Managers` |
+
+Both domains serve the same Claude Code course page. The favicon is always `favicon-terminal.svg`.
 
 ### How It Works
 1. `build.sh` runs at deploy time
-2. Replaces `__SITE_URL__`, `__OG_IMAGE__`, `__OG_TITLE__`, and `__FAVICON__` placeholders in `index.html`
+2. Replaces `__SITE_URL__`, `__OG_IMAGE__` and `__OG_TITLE__` placeholders in `index.html`
 3. Social crawlers see the correct absolute URLs for OG images
-4. Each domain serves its own branded OG image and favicon
+4. Each domain gets the correct absolute URL for its OG image
 
 ### Testing Locally
 ```bash
-# Test Cursor build
-SITE_URL=https://cursorpm.com OG_IMAGE=og-cursor.png OG_TITLE="Cursor for Product Managers" FAVICON=cursor ./build.sh
+# Test cursorpm.com build
+SITE_URL=https://cursorpm.com ./build.sh
 
 # Test Claude Code build
-SITE_URL=https://claudecodepm.com OG_IMAGE=og-claude.png OG_TITLE="Claude Code for Product Managers" FAVICON=terminal ./build.sh
+SITE_URL=https://claudecodepm.com ./build.sh
 ```
 
 ---
@@ -221,13 +223,7 @@ After deploying, test at:
 
 ## Favicons
 
-Domain-specific favicons are selected at build time via the `FAVICON` environment variable.
-
-### Available Favicons
-| Type | FAVICON Value | File | Use For |
-|------|---------------|------|---------|
-| Cursor | `cursor` | `assets/favicon-cursor.svg` | cursorpm.com |
-| Terminal | `terminal` | `assets/favicon-terminal.svg` | claudecodepm.com |
+Both domains use `assets/favicon-terminal.svg`, set directly in `index.html`.
 
 ### Favicon Specs
 - **Format:** SVG files in assets folder
