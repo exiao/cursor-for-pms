@@ -32,7 +32,7 @@ def check_assets(page):
 
 
 def check_builds():
-    # The old service settings must not restore the retired brand on either domain.
+    # Per-domain OG_TITLE from Render is honored; a legacy OG_IMAGE override is ignored.
     for domain, old_title, old_image in [
         ('cursorpm.com', 'Cursor for Product Managers', 'og-cursor.png'),
         ('claudecodepm.com', 'Claude Code for Product Managers', 'og-claude.png'),
@@ -48,7 +48,7 @@ def check_builds():
             meta = {a.get('property', a.get('name')): a.get('content') for t, a in tags if t == 'meta'}
             assert meta['og:url'] == 'https://' + domain
             for key in ('og:title', 'twitter:title'):
-                assert meta[key] == 'Claude Code and Codex for Product Managers', (domain, key, meta[key])
+                assert meta[key] == old_title, (domain, key, meta[key])
             for key in ('og:image', 'twitter:image'):
                 assert meta[key] == 'https://' + domain + '/assets/og-claude.png'
                 assert (ROOT / urlsplit(meta[key]).path.lstrip('/')).is_file()
