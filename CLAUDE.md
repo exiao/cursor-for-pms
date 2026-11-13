@@ -141,7 +141,7 @@ Homepage content was gathered from:
 ## Development Notes
 
 ### To Preview
-Simply open any `.html` file in a browser. No server needed.
+Run `./build.sh` on a copy of the repo, then open its `index.html`. The raw file shows `__OG_TITLE__` in the tab and headline.
 
 ### To Edit Styles
 Each HTML file contains its own `<style>` block and Tailwind config. Edit inline.
@@ -174,10 +174,10 @@ The site is deployed as **two separate static sites** on Render.com, each with d
 
 | Site | SITE_URL | OG_IMAGE | OG_TITLE |
 |------|----------|----------|----------|
-| Cursor domain | `https://cursorpm.com` | `og-claude.png` | `Claude Code and Codex for Product Managers` |
-| Claude Code | `https://claudecodepm.com` | `og-claude.png` | `Claude Code and Codex for Product Managers` |
+| Cursor | `https://cursorpm.com` | `og-cursor.png` | `Cursor for Product Managers` |
+| Claude Code | `https://claudecodepm.com` | `og-claude.png` | `Claude Code for Product Managers` |
 
-Both domains serve the same Claude Code course page. The favicon is always `favicon-terminal.svg`.
+Both domains serve the same Claude Code course page. `OG_TITLE` sets the page title, headline, and share preview title. The favicon is always `favicon-terminal.svg`.
 
 ### How It Works
 1. `build.sh` runs at deploy time
