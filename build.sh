@@ -4,9 +4,9 @@
 
 set -e
 
-# Only the domain and title vary (per-domain OG_TITLE since #17). The image is fixed.
+# Each Render service sets its own SITE_URL, OG_TITLE and OG_IMAGE (per-domain since #17).
 SITE_URL="${SITE_URL:-https://claudecodepm.com}"
-OG_IMAGE="og-claude.png"
+OG_IMAGE="${OG_IMAGE:-og-claude.png}"
 OG_TITLE="${OG_TITLE:-Claude Code and Codex for Product Managers}"
 
 echo "Building with SITE_URL=$SITE_URL, OG_IMAGE=$OG_IMAGE, OG_TITLE=$OG_TITLE"

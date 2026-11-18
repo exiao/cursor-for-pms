@@ -32,7 +32,7 @@ def check_assets(page):
 
 
 def check_builds():
-    # Per-domain OG_TITLE from Render is honored; a legacy OG_IMAGE override is ignored.
+    # Each domain's OG_TITLE and OG_IMAGE from Render are honored, so title and image match.
     for domain, old_title, old_image in [
         ('cursorpm.com', 'Cursor for Product Managers', 'og-cursor.png'),
         ('claudecodepm.com', 'Claude Code for Product Managers', 'og-claude.png'),
@@ -50,7 +50,7 @@ def check_builds():
             for key in ('og:title', 'twitter:title'):
                 assert meta[key] == old_title, (domain, key, meta[key])
             for key in ('og:image', 'twitter:image'):
-                assert meta[key] == 'https://' + domain + '/assets/og-claude.png'
+                assert meta[key] == 'https://' + domain + '/assets/' + old_image
                 assert (ROOT / urlsplit(meta[key]).path.lstrip('/')).is_file()
             assert any(t == 'link' and a.get('rel') == 'icon' and a.get('href') == 'assets/favicon-terminal.svg' for t, a in tags)
             check_assets(Page(text))
