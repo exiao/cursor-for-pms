@@ -1628,10 +1628,15 @@
 
     <script>
         document.querySelectorAll('[data-live-until]').forEach(b => {
-            if (Date.now() < Date.parse(b.dataset.liveUntil)) return;
+            const remaining = Date.parse(b.dataset.liveUntil) - Date.now();
             const card = b.closest('a');
-            card.querySelector('[data-live-label]').textContent = card.querySelector('[data-live-label]').dataset.liveLabel;
-            b.remove();
+            const label = card.querySelector('[data-live-label]');
+            const showRecording = () => {
+                label.textContent = label.dataset.liveLabel;
+                b.remove();
+            };
+            if (remaining > 0) setTimeout(showRecording, remaining);
+            else showRecording();
         });
     </script>
     <script>
